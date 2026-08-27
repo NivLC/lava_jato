@@ -1,6 +1,6 @@
 # Etapa 1 - Conceito
 
-A etapa 1 visa principalmente entender o princípio de funcionamento de um limpador ultrassônico e analisar topologias de *design*, introduzindo uma abordagem alternativa às técnicas popularmente utilizadas no cd mercado.
+A etapa 1 visa principalmente entender o princípio de funcionamento de um limpador ultrassônico e analisar topologias de *design*, introduzindo uma abordagem alternativa às técnicas popularmente utilizadas no mercado.
 
 ## Contextualização: O Limpador Ultrassônico
 
@@ -8,13 +8,32 @@ Um limpador ultrassônico é um equipamento utilizado para realizar a limpeza de
 
 O funcionamento do equipamento baseia-se na transformação de energia elétrica em vibrações mecânicas de alta frequência: Um sinal elétrico alternado é aplicado a um transdutor piezoelétrico, que converte a energia elétrica em vibrações mecânicas e as transmite para o líquido no recipiente de limpeza.
 
-O transdutor piezoelétrico sofre deformação mecânica quando submetido a uma tensão elétrica, expandindo e contraindo alternadamente se a tensão for alternada e vibrando na frequência do sinal elétrico. Quando a frequência da vibração é maior que 20 kHz, o resultado são ondas ultrassônicas.
+O transdutor piezoelétrico sofre deformação mecânica quando submetido a uma tensão elétrica, expandindo alternadamente se a tensão for alternada e vibrando na frequência do sinal elétrico. Quando a frequência da vibração é maior que 20 kHz, o resultado são ondas ultrassônicas.
 
-Quando as ondas ultrassônicas se propagam pelo líquido surgem pequenas bolhas de vapor ou gás. Essas bolhas crescem e, posteriormente, colapsam rapidamente devido às variações de pressão provocadas pela onda ultrassônica, desprendendo partículas de sujeira, gordura e outros contaminantes. Dessa forma, a limpeza ocorre sem a necessidade de contato mecânico direto entre uma ferramenta e o objeto.
+Quando as ondas ultrassônicas se propagam pelo líquido surgem pequenas bolhas de vapor ou gás. Essas bolhas crescem dependendo da frequência do sinal e, posteriormente, implodem rapidamente devido às variações de pressão provocadas pela onda ultrassônica, desprendendo partículas de sujeira, gordura e outros contaminantes.
+
+Dessa forma, a limpeza ocorre sem a necessidade de contato mecânico direto entre uma ferramenta e o objeto. 
+
+<center>
+<img src="img/bubbles.png" width="800">
+</center>
+
+Podem haver, entanto, áreas onde as ondas sonoras são canceladas e não haverá formação de bolhas. O cancelamento gera ondas estacionárias que criam bolsões de ar na solução de limpeza que não são dissolvidos. Essas áreas são chamadas de "zonas mortas".
+O contrário também pode acontecer, onde áreas de muita intensidade são formadas e pode acabar danificando o material no recipiente. Essas áreas são chamadas "zonas quentes".
+
+<center>
+<img src="img/foil.webp" width="500">
+</center>
+
+
+Neste caso, a limpeza não será uniforme e pode diminuir signficativamente sua eficiência.
+
 
 ### O Piezoelétrico
 
-A representação elétrica do cristal piezoelétrico pode ser descrito seguindo o modelo **Butterworth-Van Dyke (BVD)**, representado pelo circuito abaixo. 
+O cristal piezoelétrico pode ser descrito como um filtro passa-faixa, apresentado grande impedância fora dessa faixa.
+
+A representação elétrica do cristal pode ser feita seguindo o modelo **Butterworth-Van Dyke (BVD)**, representado pelo circuito abaixo. 
 
 <center>
 <img src="img/bvd.png" height="200">
@@ -28,7 +47,6 @@ O circuito tem duas partes:
     - $R_m$: Representa perdas de energia do mecanismo, como fricção, resistência do ar, etc.
 
 - **Capacitância de placa**: Surge porque os eletrodos nas extremidades do cristal são placas de prata, formando uma estrutura metal-dielétrico-metal.
-
 
 ### Impedância vs Frequência
 
@@ -61,10 +79,22 @@ Visualizando na forma linear:
 Cada piezo tem sua própria frequência de oscilação dada por sua construção física. Operar um piezo fora da oscilação significa ter a transferência de potência significativamente reduzida.
 
 ### A Impedância do Meio
-- variação conforme quantidade de objetos, líquido, piezo sozinho, piezo com bacia, etc.
 
+A impedância do meio não é constante. Depende da quatidade de líquido, temperatura, quantidade de objetos no recipiente, fixação do cristal no recipiente, etc.
 
-### Controles: Frequência vs Tensão
+Com a variação da impedância do meio, a frequência de ressonância do cristal também irá variar.
+
+Portanto, calibrar o circuito para operar exatamente na oscilação é uma tarefa complicada (especialmente no caso de opções presentes no mercado que utilizam osciladores analógicos).
+
+Uma possível solução seria considerar uma malha de *feedback* de corrente e tensão para o embarcado que poderia então ajustar a frequência de chaveamento durante a operação. Devido à complexidade, essa funcionalidade se faz **opcional**.
+
+### Casamento de Impedância
+
+Em sistemas onde a carga é uma impedância, é necessário realizar o casamento de impedância ara que não haja reflexões, como no caso de antenas/conectores.
+
+Como a carga do limpador ultrassônico é o cristal, é importante considerar uma topologia que case a impedância de saída do circuito com a impedância do cristal na ressonância para minimizar a potência reativa.
+
+### Controle: Frequência vs Tensão
 
 Como vimos anteriormente, é possível controlar a potência do cristal de duas formas: Tensão e frequência.
 
@@ -89,6 +119,13 @@ O controle por frequência, no entanto, oferece duas funções principais:
 
 Assim, o projeto pode ser operado com diferentes cristais.
 
+### Fonte: Corrente vs Tensão
+
+A tensão aplicada ao cristal dita a magnitude do movimento.
+
+O cristal pode ser considerado uma carga capacitiva. Com corrente constante, a tensão no capacitor é linear, portanto há um controle fino do movimento.
+
+Neste projeto não há necessidade de controle fino da vibração, portanto podemos simplificar o projeto com fonte de tensão.
 
 ### *Drive* do cristal: Analógico vs Digital
 
@@ -100,7 +137,9 @@ O cristal pode ser excitado com diferentes formas de onda, entre elas: **Senoida
 
 Dependendo da potência do cristal, um amplificador analógico poderia sobreaquecer e ocorreria uma falha na excitação do cristal.
 
-Na mesma linha, as mudanças bruscas de tensão na onda quadrada gera picos correntes que podem sobreaquecer o cristal levar à falha mecânica.
+Na mesma linha, as mudanças bruscas de tensão na onda quadrada gera picos de corrente que podem sobreaquecer o cristal levar à falha mecânica.
+
+### Simultaneidade de cristais
 
 ## Topologias
 
@@ -108,42 +147,71 @@ Na mesma linha, as mudanças bruscas de tensão na onda quadrada gera picos corr
 
 Há diversas possibilidades de topologias para o projeto, das quais uma será escolhida na próxima etapa. Alguns exemplos são:
 
-### Optoacoplador
+### 1) Optoacoplador
 
-O mais profissional e indicado para alta potência. <br>
+<center>
+<img src="img/opto.png" width="700">
+</center>
+
+Nesta opção, o dispositivo é alimentado diretamente pela tomada e apresenta isolamento galvânico, sendo a opção mais segura em termos de manuseamento e a que atinge maior potência.
+
+Um *flyback* faz a conversão de níveis de tensão, enquanto um *push-pull* faz a inversão AC.
+
+Há uma malha de *feedback* de corrente que se faz presente em todas as topologias, sendo **opcional** ao projeto.
+
 Apresenta maior complexidade de projeto, necessitando de várias técnicas e componentes.
 
-### Meia-ponte H
 
-Um conversor Buck com chave interna nessa faixa de tensão não é comum. <br>
-*Driver high-side* nessa faixa de frequência não é comum. <br>
-Necessário acoplamento AC.
+### 2) Ponte H
 
-### Ponte H
+<center>
+<img src="img/full_bridge.png" width="700">
+</center>
 
-Não é necessário acoplamento AC. <br>
-Buck com chave interna nessa faixa de tensão não é comum. <br>
-*Driver high-side* nessa faixa de frequência não é comum. <br>
-Necessário transformador AC-DC.
 
-### Fonte externa + Casamento de impedância
+Nesta opção, é usada uma fonte externa ou um transformador com retificação.
 
-Buck com chave interna nessa faixa de tensão é comum. <br>
-*Driver low-side* nessa faixa de frequência é comum. <br>
-Necessário fonte externa. <br>
-Necessita rede de casamento de impedância.
+Se faz necessário uso de conversores abaixadores para conversão dos níveis de tensão.
+
+Uma ponte H faz a inversão AC. Como o cristal é uma carga capacitiva, a comutação da chaves gera picos de corrente que podem ser prejudiciais ao cristal.
+
+### 3) Meia-ponte H
+
+<center>
+<img src="img/half_bridge.png" width="700">
+</center>
+
+Essa opção apresenta a mesma ideia da opção anterior, mas com duas chaves a menos. No entanto, a tensão sobre a ponte deve ser o dobro para realizar o mesmo trabalho.
+
+### 4) Fonte externa + Casamento de impedância
+
+<center>
+<img src="img/fonte_colmeia.png" width="700">
+</center>
+
+Nesta opção, uma fonte externa (de 12V a 24V) é usada para alimentar o circuito e abaixadores convertem os níveis de tensão.
+
+Um *push-pull* com chaves *low-side* faz a inversão AC e reflete a impedância do secundário (cristal) para o primário.
+
 
 ## Objetivos Gerais do Projeto
 
-- testar diferentes tipos de controle
-- (opcional) chirp
-- (opcional) feedback para autocaracterização do piezo
-- possibilidade de troca de piezo
-- controle de tempo e potência da limpeza
-
-## Referências (links/datasheets/livros)
+- Entender o funcionamento de um limpador ultrassônico
+- Pesquisar e entender o comportamento do piezoelétrico, assim como formas de controle
 
 
-- [Butterwoth-Van Dyke](https://www.bohrium.com/en/sciencepedia/feynman/keyword/bvd_equivalent_circuit)
+## Referências
 
+
+- [The Butterworth-Van Dyke (BVD) Equivalent Circuit](https://www.bohrium.com/en/sciencepedia/feynman/keyword/bvd_equivalent_circuit)
+
+- [Indoor Ionic Propulsion Technology –  High Voltage Power System Design](https://www.researchgate.net/publication/224441680_Indoor_ionic_propulsion_technology_-_high_voltage_power_system_design)
+
+- [YUNYISONIC: High-Frequency Ultrasonic Cleaning in the Lab: When and Why It Matters](https://www.yunyisonic.com/high-frequency-ultrasonic-cleaning-in-the-lab-when-and-why-it-matters/?srsltid=AfmBOopkQFBerbvCK0ieflRaHmwUs67991eDK0i3NRQh7iqhvNpcaU_K)
+
+- [Piezo SHOCK Show #35: Should I use a square or sine drive for my ultrasonic transducer?](https://www.youtube.com/live/YDQwkWBjVQU)
+
+- [Ultrasound Physics Explained - What causes attenuation of sound waves?](https://www.youtube.com/watch?v=HbuTnQ_bbHA)
+
+- [The Essential Guide to Ultrasonic Cleaning for Industry](https://www.theflexofactor.com/flexo-factor-blog/the-essential-guide-to-ultrasonic-cleaning-for-industry/?srsltid=AfmBOopLZJYfG1_F1-hMm2M-t2mfyKtTtLg-49GMPYYZXeJK91pBs5FY)
 
