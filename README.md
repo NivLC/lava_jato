@@ -1,20 +1,14 @@
+
 # Nome do projeto
 
 **(Adicionar abaixo UM parágrafo com visão geral do projeto.)**
 
 Esse projeto é um sistema de controle de motor de passo... O desenvolvimento foi divido em quatro etapas:
 
-- Etapa 1 (data da entrega): (breve descrição da etapa)
-- Etapa 2 (data da entrega): (breve descrição da etapa)
-- Etapa 3 (data da entrega): (breve descrição da etapa)
-- Etapa 4 (data da entrega): (breve descrição da etapa)
-
-**(Exemplo com os links dos READMEs das etapas:)**
-
-- [Etapa 1](./etapa_1/README.md) (02/04/2026): Pesquisa, planejamento e outline do projeto.
-- [Etapa 2](./etapa_2/README.md) (30/04/2026): Teste dos módulos e desenvolvimento de protótipo.
-- [Etapa 3](./etapa_3/README.md) (28/05/2026): Desenvolvimento do produto.
-- [Etapa 4](./etapa_4/README.md) (09/07/2026): Implementação e análise de desempenho.
+- [Etapa 1](./etapa_1/README.md) (10/09/2026): Fazer as pesquisas necessárias e dar início ao esquemático do projeto.
+- [Etapa 2](./etapa_2/README.md) (01/10/2026): Projetar cada bloco de forma isolada, testá-los planejar a integração.
+- [Etapa 3](./etapa_3/README.md) (05/11/2026): Desenvolvimento, montagem e teste do protótipo.
+- [Etapa 4](./etapa_4/README.md) (10/12/2026): Ajustes finais para otimização.
 
 
 ## Requisitos
