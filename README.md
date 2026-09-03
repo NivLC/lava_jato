@@ -1,9 +1,7 @@
 
-# Nome do projeto
+# Limpador ultrassônico
 
-**(Adicionar abaixo UM parágrafo com visão geral do projeto.)**
-
-Esse projeto é um sistema de controle de motor de passo... O desenvolvimento foi divido em quatro etapas:
+Esse projeto é um sistema de limpeza ultrassônica usando piezoelétricos para vibrar a água com frequência ajustável. O desenvolvimento foi divido em quatro etapas:
 
 - [Etapa 1](./etapa_1/README.md) (10/09/2026): Fazer as pesquisas necessárias e dar início ao esquemático do projeto.
 - [Etapa 2](./etapa_2/README.md) (01/10/2026): Projetar cada bloco de forma isolada, testá-los planejar a integração.
