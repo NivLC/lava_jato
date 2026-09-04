@@ -14,7 +14,7 @@ A etapa 1 visa, principalmente, entender o princípio de funcionamento de um lim
 | :-----------------------: | :----------------- |
 | 20-40 | Remoção de ferrugem, sujidade pesada, limpeza de peças mecânicas, limpeza industrial |
 | 40-80 | Limpeza de joias, relógios, instrumentos cirúrgicos, limpeza de peças eletrónicas |
-| 80-170 | Limpeza de componentes eletrónicos sensíveis, limpeza de lentes, limpeza de peças com geometria complexa |
+| 80-170 | Limpeza de componentes eletrônicos sensíveis, limpeza de lentes, limpeza de peças com geometria complexa |
 
 <br><br>
 Na seguinte figura, um resumo visual do que foi explicado até agora:
@@ -76,7 +76,7 @@ Visualizando na forma linear:<br><br>
 <div align = center>
 <img src="img/freqs_lin.png" width="600">
 </div>
-<br><br>
+<br>
 
 Cada piezo tem sua própria frequência de oscilação dada por sua construção física. Operar um piezo fora da oscilação significa ter a transferência de potência significativamente reduzida.
 
@@ -88,7 +88,7 @@ Com a variação da impedância, a frequência de ressonância do cristal també
 
 Portanto, calibrar o circuito para operar exatamente na oscilação é uma tarefa complicada.
 
-Uma possível solução seria considerar uma malha de *feedback* de corrente e tensão para o embarcado, que poderia ajustar a frequência de chaveamento durante a operação. Devido a complexidade, essa funcionalidade se faz **opcional**.
+Uma possível solução seria considerar uma malha de *feedback* de corrente e tensão para o embarcado, que poderia ajustar a frequência de chaveamento durante a operação. Essa funcionalidade se faz **opcional**.
 
 ### Controle: Frequência vs Tensão
 
@@ -97,6 +97,7 @@ Como vimos anteriormente, a frequência pode definir a potência efetivamente co
 
 <br>Além disso, é possível controlar a potência do cristal através da tensão, com $Z$ fixo.
 >$P_{total}(V)=V^2/Z$
+ 
 
 ### *Drive* do cristal: Analógico vs Digital
 
@@ -112,9 +113,10 @@ Na mesma linha, as mudanças bruscas de tensão da onda quadrada geram picos de 
 
 ## Topologias
 
-`OBS: Valores de tensão/corrente nessa etapa são especulativos e estão suscetíveis a mudanças`
+`OBS: Valores de tensão nessa etapa são especulativos e estão suscetíveis a mudanças`
 
-Em todas as topologias, há uma malha de *feedback* de corrente, **opcional** ao projeto.  
+Para realizar os controles de tensão/frequência previamente mencionados, podemos utilizar técnicas como PWM e *timers*, respectivamente, que deverão ser previstas na topologia escolhida.
+
 Há diversas possibilidades de topologias, entre elas:
 
 ### 1) Optoacoplador
@@ -159,11 +161,23 @@ Nesta opção, uma fonte externa (de 12V a 24V) é usada para alimentar o circui
 
 Um *push-pull* com chaves *low-side* faz a inversão AC e reflete a impedância do secundário (cristal) para o primário.
 
+Há a possibilidade de introduzir um indutor, criando um *push-pull* alimentado por corrente para linearizar o movimento do cristal:
+
+<div align=center>
+<img src="img/push_pull.png" width="500">
+</div><br><br>
+
+<br>Há ainda a possibilidade de usar cristais de forma alternada na mesma estrutura usando chaves, por exemplo:
+
+<div align=center>
+<img src="img/piezos.png" width="200">
+</div><br><br>
+
 
 ## Objetivos Gerais do Projeto
 
 - Entender o funcionamento de um limpador ultrassônico
-- Pesquisar e entender o comportamento do piezoelétrico, assim como formas de controle
+- Pesquisar e entender o comportamento do piezoelétrico e formas de controle
 
 
 ## Referências
