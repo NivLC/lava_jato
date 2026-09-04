@@ -1,193 +1,159 @@
 # Etapa 1 - Conceito
 
-A etapa 1 visa principalmente entender o princípio de funcionamento de um limpador ultrassônico e analisar topologias de *design*, introduzindo uma abordagem alternativa às técnicas popularmente utilizadas no mercado.
+A etapa 1 visa, principalmente, entender o princípio de funcionamento de um limpador ultrassônico e analisar topologias de *design*, com o objetivo de encontrar uma abordagem alternativa às técnicas popularmente utilizadas no mercado.
 
 ## Contextualização: O Limpador Ultrassônico
 
-Um limpador ultrassônico é um equipamento utilizado para realizar a limpeza de objetos por meio de ondas ultrassônicas, permitindo remover sujeiras, resíduos, óleos e partículas de regiões de difícil acesso e é utilizado em áreas como eletrônica, odontologia, indústria, laboratórios e manutenção de peças.
+**Utilidade:** O limpador ultrassônico serve para realizar a limpeza de objetos por meio de ondas ultrassônicas, permitindo remover resíduos de difícil acesso.
 
-O funcionamento do equipamento baseia-se na transformação de energia elétrica em vibrações mecânicas de alta frequência: Um sinal elétrico alternado é aplicado a um transdutor piezoelétrico, que converte a energia elétrica em vibrações mecânicas e as transmite para o líquido no recipiente de limpeza.
+**Funcionamento:** Um sinal elétrico alternado é aplicado a um transdutor piezoelétrico, que converte a energia elétrica em vibrações mecânicas, transmitindo-as para o líquido no recipiente. Quando a frequência da vibração é maior que 20 kHz, o resultado são ondas ultrassônicas.
 
-O transdutor piezoelétrico sofre deformação mecânica quando submetido a uma tensão elétrica, expandindo alternadamente se a tensão for alternada e vibrando na frequência do sinal elétrico. Quando a frequência da vibração é maior que 20 kHz, o resultado são ondas ultrassônicas.
+**A reação em cadeia:** Quando as ondas ultrassônicas se propagam pelo líquido, surgem pequenas bolhas de vapor ou gás. Essas bolhas crescem dependendo da frequência do sinal e, posteriormente, implodem rapidamente devido às variações de pressão provocadas pela onda ultrassônica, desprendendo partículas de sujeira, gordura e outros contaminantes. Dependendo da faixa de frequência trabalhada, a limpeza pode ser *bruta* ou *fina*, conforme a tabela abaixo:<br><br>
 
-Quando as ondas ultrassônicas se propagam pelo líquido surgem pequenas bolhas de vapor ou gás. Essas bolhas crescem dependendo da frequência do sinal e, posteriormente, implodem rapidamente devido às variações de pressão provocadas pela onda ultrassônica, desprendendo partículas de sujeira, gordura e outros contaminantes.
+| Faixa de Frequência (kHz) | Aplicações Típicas |
+| :-----------------------: | :----------------- |
+| 20-40 | Remoção de ferrugem, sujidade pesada, limpeza de peças mecânicas, limpeza industrial |
+| 40-80 | Limpeza de joias, relógios, instrumentos cirúrgicos, limpeza de peças eletrónicas |
+| 80-170 | Limpeza de componentes eletrónicos sensíveis, limpeza de lentes, limpeza de peças com geometria complexa |
 
-Dessa forma, a limpeza ocorre sem a necessidade de contato mecânico direto entre uma ferramenta e o objeto. 
+<br><br>
+Na seguinte figura, um resumo visual do que foi explicado até agora:
+<br><br>
 
-<center>
+<div align=center>
 <img src="img/bubbles.png" width="800">
-</center>
+</div>  <br><br>
+  
+**Problema:** Podem haver, entretanto, áreas sujeitas a cancelamento devido à interferências destrutivas. O cancelamento gera ondas estacionárias que criam bolsões de ar na solução de limpeza. Essas áreas são chamadas de *"zonas mortas"*.  
 
-Podem haver, entanto, áreas onde as ondas sonoras são canceladas e não haverá formação de bolhas. O cancelamento gera ondas estacionárias que criam bolsões de ar na solução de limpeza que não são dissolvidos. Essas áreas são chamadas de "zonas mortas".
-O contrário também pode acontecer, onde áreas de muita intensidade são formadas e pode acabar danificando o material no recipiente. Essas áreas são chamadas "zonas quentes".
+O contrário também pode acontecer, onde áreas de muita intensidade são formadas, podendo acabar danificando o material no recipiente. Essas áreas são chamadas *"zonas quentes"*. <br><br>
 
-<center>
+<div align=center>
 <img src="img/foil.webp" width="500">
-</center>
+</div> <br><br>
 
-
-Neste caso, a limpeza não será uniforme e pode diminuir signficativamente sua eficiência.
-
+Nestes casos, a limpeza não será uniforme e pode diminuir signficativamente sua eficiência. Para resolver esse problema, pode-se adotar uma pequena variação de frequência em torno da frequência de ressonância do piezo, chamada de **SWEEP**.
 
 ### O Piezoelétrico
 
-O cristal piezoelétrico pode ser descrito como um filtro passa-faixa, apresentado grande impedância fora dessa faixa.
+O cristal piezoelétrico pode ser descrito como um filtro passa-faixa, representado pelo modelo **Butterworth-Van Dyke (BVD)**, mostrado abaixo.<br><br>
 
-A representação elétrica do cristal pode ser feita seguindo o modelo **Butterworth-Van Dyke (BVD)**, representado pelo circuito abaixo. 
-
-<center>
+<div align=center>
 <img src="img/bvd.png" height="200">
-</center>
+</div> <br><br>
 
 O circuito tem duas partes:
 
-- **Braço *motional***: Representação elétrica da vibração mecânica do cristal.
-    - $L_m$: Representa a inércia da massa do cristal vibrando.
-    - $C_m$: Representa a elasticidade do cristal.
-    - $R_m$: Representa perdas de energia do mecanismo, como fricção, resistência do ar, etc.
+- **Braço de *movimentação*(motional arm):** Representação elétrica da vibração mecânica do cristal, composto por:
+    - $L_m$: Inércia do cristal vibrando;
+    - $C_m$: Elasticidade do cristal;
+    - $R_m$: Perdas energéticas.
 
-- **Capacitância de placa**: Surge porque os eletrodos nas extremidades do cristal são placas de prata, formando uma estrutura metal-dielétrico-metal.
+- **Capacitância de placa**: 
+    - $C_p$: Eletrodos nas extremidades do cristal são placas de prata, formando uma estrutura metal-dielétrico-metal.
 
 ### Impedância vs Frequência
 
-Por se tratar de uma estrutura de duas partes, o piezo tem duas frequências de ressonância: série e paralelo ($f_S$ e $f_P$).
+Por se tratar de uma estrutura de duas partes, o piezo tem duas frequências de ressonância: série e paralelo.
 
-- $f_S$
+- $Série$
 
-Há uma frequência específica onde o capacitor e o indutor se anulam e ocorre uma ressonância série.
-Nesse ponto, tanto o módulo quanto a fase de $L_m$ e $C_m$ se anulam e sobra quase que apenas a resistência real $R_m$, portanto a impedância do braço é mínima e a corrente tende a passar por ele.
-Essa frequência é chamada de $ressonância$.
+    Há uma frequência específica na qual o capacitor e o indutor se anulam, ocorrendo a ressonância série. Tanto o módulo quanto a fase de $L_m$ e $C_m$ se anulam, sobrando apenas a resistência real $R_m$. A impedância do braço é mínima e a corrente tende a passar por ele. Essa frequência é chamada de $ressonância$.
 
-- $f_P$
+- $Paralelo$
 
-Logo após a ressonância, a influência do indutor começa a sobrepassar a do capacitor e o braço começa a ter característica indutiva, montando um indutor em paralelo com $C_p$. Isso forma um tanque LC paralelo.
-Nesse ponto, as fases se cancelam, mas não o módulo. Portanto a impedância é máxima.
-Essa frequência é chamada de $anti$-$ressonância$.
+    Logo após a ressonância, a influência do indutor começa a sobrepassar a do capacitor e o braço começa a ter característica indutiva, formando um paralelo com $C_p$. Nesse ponto, as fases se cancelam, mas não o módulo. Portanto, a impedância é máxima. Essa frequência é chamada de $anti$-$ressonância$. <br>
 
-<center>
+Como mostrado nas figuras abaixo:<br><br>
+
+<div align=center>
 <img src="img/freqs.png" width="600">
-</center>
-<br>
+</div>
+<br><br>
 
-Visualizando na forma linear:
+Visualizando na forma linear:<br><br>
 
-<center>
+<div align = center>
 <img src="img/freqs_lin.png" width="600">
-</center>
-<br>
+</div>
+<br><br>
 
 Cada piezo tem sua própria frequência de oscilação dada por sua construção física. Operar um piezo fora da oscilação significa ter a transferência de potência significativamente reduzida.
 
-### A Impedância do Meio
+### Influência do Meio
 
-A impedância do meio não é constante. Depende da quatidade de líquido, temperatura, quantidade de objetos no recipiente, fixação do cristal no recipiente, etc.
+A impedância do meio depende de fatores como: Quantidade de líquido, objetos no recipiente, fixação do cristal, temperatura, etc.
 
-Com a variação da impedância do meio, a frequência de ressonância do cristal também irá variar.
+Com a variação da impedância, a frequência de ressonância do cristal também varia.
 
-Portanto, calibrar o circuito para operar exatamente na oscilação é uma tarefa complicada (especialmente no caso de opções presentes no mercado que utilizam osciladores analógicos).
+Portanto, calibrar o circuito para operar exatamente na oscilação é uma tarefa complicada.
 
-Uma possível solução seria considerar uma malha de *feedback* de corrente e tensão para o embarcado que poderia então ajustar a frequência de chaveamento durante a operação. Devido à complexidade, essa funcionalidade se faz **opcional**.
-
-### Casamento de Impedância
-
-Em sistemas onde a carga é uma impedância, é necessário realizar o casamento de impedância ara que não haja reflexões, como no caso de antenas/conectores.
-
-Como a carga do limpador ultrassônico é o cristal, é importante considerar uma topologia que case a impedância de saída do circuito com a impedância do cristal na ressonância para minimizar a potência reativa.
+Uma possível solução seria considerar uma malha de *feedback* de corrente e tensão para o embarcado, que poderia ajustar a frequência de chaveamento durante a operação. Devido a complexidade, essa funcionalidade se faz **opcional**.
 
 ### Controle: Frequência vs Tensão
 
-Como vimos anteriormente, é possível controlar a potência do cristal de duas formas: Tensão e frequência.
+Como vimos anteriormente, a frequência pode definir a potência efetivamente consumida em vibração. 
+> $P_{total}(f)=V^2/Z(f)$ 
 
-Se tivermos, por exemplo um piezo que oscila a 120 kHz e a impedância nesse ponto é de 140 Ohms, considerando uma entrada de 20V temos:
-
-$$ P = R \cdot I² = R \cdot (\frac{V}{R})² = 140 \cdot (\frac{20}{140})² \approx 2.86 W $$
-
-Agora o tirarmos da ressonância e operarmos em, por exemplo, 125 kHz onde a impedância é 1.02 kOhms:
-
-$$ P = R \cdot I² = R \cdot (\frac{V}{R})² = 1020 \cdot (\frac{20}{1020})² \approx 0.39 W $$
-
-Agora, com o mesmo cristal, se alterarmos a tensão de 20V para 10V, a potência cairá 4 vezes:
-
-$$ P = R \cdot I² = R \cdot (\frac{V}{R})² = 140 \cdot (\frac{10}{140})² \approx 0.71 W $$
-
-Os limpadores comerciais genéricos tendem a usar um oscilador (normalmente Colppits ou Hartley) para gerar a frequência de oscilação do cristal e fazem o controle da potência variando a tensão. Uma característica dessa abordagem é que o oscilador é personalizado para um cristal específico.
-
-O controle por frequência, no entanto, oferece duas funções principais:
-
-1) Ajuste da potência de vibração do cristal, possibilitando limpezas delicadas por longos períodos de tempo sem danificar o objeto;
-2) **Substituição do cristal para o equipamento operar em outra faixa de frequência.**
-
-Assim, o projeto pode ser operado com diferentes cristais.
-
-### Fonte: Corrente vs Tensão
-
-A tensão aplicada ao cristal dita a magnitude do movimento.
-
-O cristal pode ser considerado uma carga capacitiva. Com corrente constante, a tensão no capacitor é linear, portanto há um controle fino do movimento.
-
-Neste projeto não há necessidade de controle fino da vibração, portanto podemos simplificar o projeto com fonte de tensão.
+<br>Além disso, é possível controlar a potência do cristal através da tensão, com $Z$ fixo.
+>$P_{total}(V)=V^2/Z$
 
 ### *Drive* do cristal: Analógico vs Digital
 
 O cristal pode ser excitado com diferentes formas de onda, entre elas: **Senoidal e quadrada**.
 
-- Senoidal: Tende a ser utilizada para ultrassom de potência e para minimizar conteúdo harmônico em projetos onde é importante manter uma forma de onda pura no meio de propagação. Para fazer o *drive* analógico é necessário um amplificador analógico, aumentando o custo do projeto.
+- Senoidal: Utilizada para ultrassom de potência e para minimizar conteúdo harmônico onde é importante manter uma forma de onda pura. Para fazer o *drive* analógico, é necessário um amplificador analógico, aumentando o custo do projeto.
 
-- Quadrada: Tende a ser utilizada em projetos onde pureza espectral não é um fator crítico. Pode ser gerada pelo chaveamento de transistores.
+- Quadrada: Utilizada em projetos onde pureza espectral não é um fator crítico. Pode ser gerada por chaveamento.
 
-Dependendo da potência do cristal, um amplificador analógico poderia sobreaquecer e ocorreria uma falha na excitação do cristal.
+Dependendo da potência, um amplificador analógico poderia sobreaquecer e ocorreria uma falha na excitação do cristal.
 
-Na mesma linha, as mudanças bruscas de tensão na onda quadrada gera picos de corrente que podem sobreaquecer o cristal levar à falha mecânica.
-
-### Simultaneidade de cristais
+Na mesma linha, as mudanças bruscas de tensão da onda quadrada geram picos de corrente que podem sobreaquecer o cristal e levar a falha mecânica.
 
 ## Topologias
 
-`OBS: Valores de tensão/corrente nessa etapa são estipulados e estão suscetíveis a mudanças`
+`OBS: Valores de tensão/corrente nessa etapa são especulativos e estão suscetíveis a mudanças`
 
-Há diversas possibilidades de topologias para o projeto, das quais uma será escolhida na próxima etapa. Alguns exemplos são:
+Em todas as topologias, há uma malha de *feedback* de corrente, **opcional** ao projeto.  
+Há diversas possibilidades de topologias, entre elas:
 
 ### 1) Optoacoplador
-
-<center>
+<br>
+<div align=center>
 <img src="img/opto.png" width="700">
-</center>
+</div> <br><br>
 
-Nesta opção, o dispositivo é alimentado diretamente pela tomada e apresenta isolamento galvânico, sendo a opção mais segura em termos de manuseamento e a que atinge maior potência.
+Nesta opção, o dispositivo é alimentado diretamente pela tomada e apresenta isolamento galvânico, sendo a opção mais segura em termos de manuseamento e a potência máxima.
 
 Um *flyback* faz a conversão de níveis de tensão, enquanto um *push-pull* faz a inversão AC.
 
-Há uma malha de *feedback* de corrente que se faz presente em todas as topologias, sendo **opcional** ao projeto.
-
-Apresenta maior complexidade de projeto, necessitando de várias técnicas e componentes.
-
-
 ### 2) Ponte H
 
-<center>
+<br>
+<div align=center>
 <img src="img/full_bridge.png" width="700">
-</center>
+</div> <br><br>
 
 
 Nesta opção, é usada uma fonte externa ou um transformador com retificação.
 
-Se faz necessário uso de conversores abaixadores para conversão dos níveis de tensão.
-
-Uma ponte H faz a inversão AC. Como o cristal é uma carga capacitiva, a comutação da chaves gera picos de corrente que podem ser prejudiciais ao cristal.
+Uma ponte H faz a inversão AC.
 
 ### 3) Meia-ponte H
 
-<center>
+<br>
+<div align=center>
 <img src="img/half_bridge.png" width="700">
-</center>
+</div><br><br>
 
 Essa opção apresenta a mesma ideia da opção anterior, mas com duas chaves a menos. No entanto, a tensão sobre a ponte deve ser o dobro para realizar o mesmo trabalho.
 
 ### 4) Fonte externa + Casamento de impedância
 
-<center>
+<br>
+<div align=center>
 <img src="img/fonte_colmeia.png" width="700">
-</center>
+</div><br><br>
 
 Nesta opção, uma fonte externa (de 12V a 24V) é usada para alimentar o circuito e abaixadores convertem os níveis de tensão.
 
