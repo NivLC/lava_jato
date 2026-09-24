@@ -20,7 +20,7 @@ Esta topologia é a mais adequada pois traz um transformador *push-pull* que per
 <img src="img/pwm-timer.png" width="500">
 </div> <br><br>
 
-Uma observação imprtante é que o cristal pode ser considerado uma carga capacitiva. Com corrente constante, a tensão no capacitor é linear, portanto há um controle fino do movimento.
+Uma observação importante é que o cristal pode ser considerado uma carga capacitiva. Com corrente constante, a tensão no capacitor é linear, portanto há um controle fino do movimento.
 
 <br>
 <div align=center>
@@ -54,11 +54,26 @@ A fonte usada para a alimentação será de 24V/5A:
 
 ### Cristal fixado
 
+É aconselhado fazer pequenas ranhuras na bacia para melhor aderência do adesivo:
+
+<div align=center>
+<img src="img/fixacao.jpeg" width="400">
+</div><br>
+
 Foi utilizado DUREPOXI para a fixação do cristal na cuba de aço:
 
-
+<div align=center>
+<img src="img/fixacao2.jpeg" width="400">
+<img src="img/fixacao3.jpeg" width="400">
+</div>
 
 ## Caracterização do indutor
+
+$ I_S = \sqrt{\frac{P_{xtal}}{R_{res}}}  = \sqrt{\frac{30}{R_{res}}} \quad = \quad$
+
+$ V_S = I_S \cdot R_{res} =  \quad = \quad$
+
+$ \frac{N_S}{N_P} = \frac{V_S}{V_P} = \frac{V_S}{24} \quad = \quad$
 
 ## Escolha do embarcado
 
@@ -66,7 +81,20 @@ Foi utilizado DUREPOXI para a fixação do cristal na cuba de aço:
 
 - Dois ADCs;
 - Frequência de ADC de 2~4x maior que a de comutação;
-- Dois AMPOPS integrados.
+- Dois AMPOPs integrados.
+
+O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
+
+- 4 ADCs de 0.14 MHz a 72 MHz;
+- 4 AMPOPs internos.
+
+
+<div align=center>
+<img src="img/stm.png" width="400">
+<br>
+<img src="img/stm_features.avif" width="400">
+</div>
+
 
 ## Testes
 
@@ -82,7 +110,7 @@ Um simples pedido de confirmação é o suficiente.
 
 ### ADC
 
-### SWEEP
+### *SWEEP*
 
 ## Referências
 
