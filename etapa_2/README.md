@@ -8,27 +8,30 @@ A topologia escolhida foi a opção **4: Fonte externa + Casamento de impedânci
 
 Esta topologia é a mais adequada pois traz um transformador *push-pull* que permite a conversão de energia através do casamento de impedância entre o primário e secundário, sendo necessárias apenas duas chaves *low-side* para realizar a comutação.
 
+
 <br>
 <div align=center>
+Figura 1: Topologia escolhida
 <img src="img/push-pull.png" width="800">
 </div> <br><br>
 
 É possível fazer o controle de potência tanto por tensão quanto por frequência, utilizando PWM e *timer*.
 
 <br>
-<div align=center>
+<div align=center>Figura 2: Timer e PWM
+
 <img src="img/pwm-timer.png" width="500">
 </div> <br><br>
 
-Uma observação importante é que o cristal pode ser considerado uma carga capacitiva. Com corrente constante, a tensão no capacitor é linear, portanto há um controle fino do movimento.
-
-<br>
-<div align=center>
-<img src="img/cap_curr.png" width="350">
-<img src="img/cap_volt.png" width="350">
-</div> <br><br>
 
 O cristal pode ser considerado uma carga capacitiva. Com corrente constante, a tensão no capacitor é linear, portanto há um controle fino do movimento.
+
+<br>
+<div align=center>Figura 3: Corrente constante X Tensão constante no capacitor
+
+<img src="img/cap_curr.png" width="350">
+<img src="img/cap_volt.png" width="358">
+</div> <br><br>
 
 Como mencionado na Etapa 1, é possível adicionar um indutor em série no *tap* central do *push-pull* para fazer uma fonte de corrente. No entanto, o indutor tipicamente é grande e pode gerar picos de tensão altos na comutação das chaves.
 
@@ -38,43 +41,202 @@ A fonte usada para a alimentação será de 24V/5A:
 
 
 <br>
-<div align=center>
+<div align=center>Figura 4: Fonte externa
+
 <img src="img/fonte.png" width="350">
 </div> <br><br>
 
 ## Caracterização do cristal
 
+Em um cristal piezoelétrico (como um disco ou cilindro cerâmico), o comportamento dinâmico é caracterizado por modos de vibração fundamentais: Radial (planar) e axial (espessura).
+A principal diferença é que a frequência axial é governada pela espessura do componente, operando em frequências mais altas (MHz), enquanto a frequência radial é governada pelo diâmetro, operando em faixas mais baixas (kHz).
+
+A tabela abaixo sumariza os modos de vibração e suas respsctivas aplicações. Neste caso, chamaremos a atenção para "*Area expansion mode*" (radial) e "*Thickness expansion mode*" (axial).
+
+O modo com o qual visamos trabalhar é o **radial**. O modo axial, por conta de sua frequência de operação muito elevada, é melhor aproveitado em aplicações como atomizadores e umidificadores.
+
 <br>
-<div align=center>
+<div align=center>Figura 5: Modos de vibração do cristal
+
+<img src="img/vibration.png" width="400">
+</div> <br><br>
+
+Para caracterizar o cristal, utilizamos um osciloscópio com o seguinte *setup*:
+
+<br>
+<div align=center>Figura 6: Diagrama de conexões para caracterizar o cristal
+
 <img src="img/caracterizacao.png" width="400">
 </div> <br><br>
 
 
+
+Para equilibrar o divisor de tensão, usamos resistores próximos a impedância estimada do cristal. 
+
+O fabricante garante que o cristal tem uma impedância de ressonância inferior a $20 \Omega$, portanto, usamos resistores de $51.2 \Omega$ e $3279 \Omega$ para encontrar, respectivamente, a impedância de ressonância e anti-ressonância em ambos os modos axial e radial de acordo com a fórmula do divisor de tensão:
+
+$$ V_{CH2} = V_{CH1} \frac{R_{cristal}}{R_{cristal} + R1} $$
+<br>
+
 ### Cristal em aberto
+
+#### Frequências do cristal
+
+Primeiramente, obtivemos informações de frequência apenas com o resistor de $51.2 \Omega$ conectado, sem o cristal. Assim, podemos observar a influência do componente na medição do cristal.
+
+>OBS: Há alguns momentos em que a medição no osciloscópio falha, ocasionando vales bruscos não característicos do sistema real. Essas medições estão identificadas como "nan" nos arquivos .csv disponíveis em [hardware/bode](etapa_2/hardware/bode).
+
+<div align=center>Figura 7: Bode Plot com cristal desconectado
+
+<img src="img/setup_bode.png" width="500">
+</div><br>
+
+Exceto pelo erro de medição, o resistor não aparenta influenciar em demasia o sistema.
+
+Agora,  as informações de frequência para cada resistor.
+
+- Resistor de $3179 \Omega$
+
+    <div align=center>Figura 8: Bode Plot de banda completa
+
+    <img src="img/R3k_bode_full.png" width="500">
+    </div>
+
+    <div align=center>Figura 9: Bode Plot com zoom no modo axial
+
+    <img src="img/R3k_axial_bode.png" width="500">
+    </div>
+
+    <div align=center>Figura 10: Bode Plot com zoom no modo radial
+
+    <img src="img/R3k_radial_bode.png" width="500">
+    </div>
+
+<br>
+
+- Resistor de $51.2 \Omega$
+
+    <div align=center>Figura 11: Bode Plot de banda completa
+
+    <img src="img/R51_bode_full.png" width="500">
+    </div>
+
+    <div align=center>Figura 12: Bode Plot com zoom no modo axial
+
+    <img src="img/R51_axial_bode.png" width="500">
+    </div>
+
+    <div align=center>Figura 13: Bode Plot com zoom no modo radial
+
+    <img src="img/R51_radial_bode.png" width="500">
+    </div>
+
+
+
+#### Impedância do cristal
+
+Obtendo os valores de $V_{CH1}$ (Vamp1) e $V_{CH2}$ (Vamp2) pelo osciloscópio:
+
+<div align=center>Figura 14: Resistor de 51.2Ω (Modo AXIAL)
+
+<img src="img/R51_axial.png" width="500">
+</div>
+
+<br>
+<div align=center>Figura 15: Resistor de 51.2Ω (Modo RADIAL)
+
+<img src="img/R51_radial.png" width="500">
+</div>
+
+<br>
+<div align=center>Figura 16: Resistor de 3279Ω (Modo AXIAL)
+
+<img src="img/R3k_axial.png" width="500">
+</div>
+
+<br>
+<div align=center>Figura 17: Resistor de 3279Ω (Modo RADIAL)
+
+<img src="img/R3k_radial.png" width="500">
+</div> <br><br>
+
+Com os valores de tensão conhecidos, opdemos calcular o divisor de tensão para $R_{cristal}$.
+
+- Modo AXIAL
+
+    - **Ressonância**
+
+        $ 0.0057744 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad 
+        \rightarrow \qquad {R_{cristal}} = 0.305 \Omega $
+    
+    - **Anti-ressonância**
+
+        $ 0.21294 = 0.95542 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad 
+        \rightarrow \qquad {R_{cristal}} = 940.402 \Omega $
+
+- Modo RADIAL
+
+    - **Ressonância**
+
+        $ 0.32061 = 1.1484 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad 
+        \rightarrow \qquad {R_{cristal}} = 19.8301 \Omega $
+    
+    - **Anti-ressonância**
+
+        $ 0.66272 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad 
+        \rightarrow \qquad {R_{cristal}} = 6964.93 \Omega $
+
+<br>
+
+#### Capacitância
+
+O fabricante disponibiliza uma tabela de valores padrão para o cristal dependendo do tamanho.
+
+O valor da capacitância de placa padrão é de $6940 \pm 15 \% \text{ pF}$. Este valor condiz com o medido com multímetro, de aproximadamente $6.241 \text{ nF}$.
+
+<div align=center>Figura 18: Informações do fabricante
+
+<img src="img/fabricante.jpeg" width="500">
+</div> <br><br>
+
+#### Resultados
+
+Para o modo radial, temos os seguintes resultados:
+
+|  |  |
+|:-------|:-------------|
+| Ressonância | 79.85 kHz |
+| Anti-ressonância | 94.54 kHz |
+| Impedância na ressonância | 19.8301Ω |
+| Impedância na anti-ressonância | 6964.93Ω |
+| Capacitância de placa | 6.241 nF |
+
+
 
 ### Cristal fixado
 
-É aconselhado fazer pequenas ranhuras na bacia para melhor aderência do adesivo:
+Como a impedância do sistema é variável, é importante também obter os valores com o cristal fixado na estrutura de limpeza.
 
-<div align=center>
+É aconselhado fazer pequenas ranhuras na bacia para melhor aderência do adesivo.
+
+<div align=center>Figura 19: Ranhuras no ponto de fixação do cristal
+
 <img src="img/fixacao.jpeg" width="400">
 </div><br>
 
-Foi utilizado DUREPOXI para a fixação do cristal na cuba de aço:
+Foi utilizado DUREPOXI para a fixação do cristal na cuba de aço.
 
-<div align=center>
+<div align=center>Figura 20: Fixação do cristal
+
 <img src="img/fixacao2.jpeg" width="400">
-<img src="img/fixacao3.jpeg" width="400">
+<img src="img/fixacao3.jpeg" width="384">
 </div>
 
-## Caracterização do indutor
+#### Frequências do cristal
 
-$ I_S = \sqrt{\frac{P_{xtal}}{R_{res}}}  = \sqrt{\frac{30}{R_{res}}} \quad = \quad$
 
-$ V_S = I_S \cdot R_{res} =  \quad = \quad$
-
-$ \frac{N_S}{N_P} = \frac{V_S}{V_P} = \frac{V_S}{24} \quad = \quad$
-
+#### Impedância do cristal
+                                                                                            
 ## Escolha do embarcado
 
 ### Requisitos
@@ -89,32 +251,88 @@ O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
 - 4 AMPOPs internos.
 
 
-<div align=center>
-<img src="img/stm.png" width="400">
-<br>
+<div align=center>Figura 20: Microcontrolador escolhido
+
+<img src="img/stm.png" width="300">
+</div>
+
+<div align=center>Figura 21: Features do microcontrolador
+
 <img src="img/stm_features.avif" width="400">
 </div>
 
 
 ## Testes
 
-### *Display*
+Para a realização dos testes, foi fabricada uma PCB. A documentação detalhada se encontra em [hardware/README.md](etapa_2/hardware/README.md).
+
+### *Display* e *encoder*
+
+O *display* utilizado é um OLED SSD1306 128x64 5V.
+
+Um *encoder* rotativo será utilizado para interfacear com usuário.
+
+O teste feito usa o *encoder* para incrementar/decrementar um contador, enquanto uma bola quica. Ao pressionar o botão, a cor do *display* muda e a bola sofre uma força de sentido contrário.
+
+O código está disponível em [software](etapa_2/software).
+
+<div align=center>Figura 22: Teste display + encoder
+
+<img src="img/display.gif" width="400">
+</div>
 
 ### Trava de segurança
 
-Um simples pedido de confirmação é o suficiente.
+Uma simples tela de confirmação é o suficiente. Uma mensagem deverá aparecer confirmando se o usuário gostaria de prosseguir ou se deseja cancelar a operação.
 
-### Configuração de *timer*
+### Configuração de *timer* e PWM (Sem *driver*)
 
-### Configuração de PWM (Sem *driver*)
+Para o teste, seguimos a seguinte configuração do TIMER 1 com ARR = 1440:
 
-### ADC
+| Channel | Mode          | CCR/Pulse |
+| ------- | ------------- | --------: |
+| CH1     | Combined PWM1 |         0 |
+| CH2     | PWM1 (No output)          |       500 |
+| CH3     | Combined PWM1 |       720 |
+| CH4     | PWM1 (No output)         |      1220 |
 
-### *SWEEP*
+<br>
+<div align=center>Figura 23: Combined PWM Mode 1
+
+<img src="img/pwm_doc.png" width="400">
+</div><br>
+
+No modo *Combined PWM mode 1*, o referência é o OR dos sinais PWM, ou seja, o maior valor entre os canais. Neste caso, CH1|CH2 e CH3|CH4. 
+Para calcular o *duty cycle*:
+
+- CH1 | CH2
+
+$$ D = \frac{CCR_{max}}{ARR} \qquad \rightarrow \qquad D = \frac{500}{1440} \approx 34.7\% $$
+
+<br>
+<div align=center>Figura 24: Duty do CH1
+
+<img src="img/duty.jpeg" width="300">
+</div><br><br>
+
+- CH3 | CH3
+
+$$ D = \frac{CCR_{max}}{ARR}\qquad \rightarrow \qquad D = \frac{1220}{1440} \approx 84.7 \% $$
+
+<br>
+<div align=center>Figura 25: Duty do CH2
+
+<img src="img/duty1.jpeg" width="300">
+</div><br><br>
+
+A partir da medição de frequência do osciloscópio podemos validar também o funcionamento do *timer*:
+
+$ f = \frac{f_{timer}}{ARR} = \frac{144 MHz}{1440} = 100 kHz $
+
 
 ## Referências
 
-
 - [YUNYISONIC: What Influences Ultrasonic Cleaning Effectiveness](https://www.yunyisonic.com/what-influences-ultrasonic-cleaning-effectiveness/?srsltid=AfmBOor3Ai7u_kyIE6ecRtDf-KHuqUFtPqL6pnWAhgAGjBU3c9__m4wV)
 - [Ultrasonic Cleaner Sweep Mode | Tovatech ](https://www.youtube.com/watch?v=2wetLSvoQwQ)
-- []()
+- [Ceramic Resonators (CERALOCK): Vibration Modes](https://www.murata.com/products/timingdevice/ceralock/overview/basic/vibration)
+- RM0316 Reference manual
