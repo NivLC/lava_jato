@@ -1,11 +1,11 @@
 # Etapa 2 - Design
 
 Na etapa 2, objetiva-se:
-- Detalhar a tolpologia escolhida na etapa 1;
+- Detalhar a topologia escolhida na etapa 1;
 - Caracterizar o piezoelétrico;
 - Decidir Interface de controle;
     - Estudar possibilidade de trava de segurança;
-- Definir design externo do recepiente;
+- Definir design externo do recipiete;
 - Escolher microcontrolador;
 - Testes.
 
@@ -54,7 +54,7 @@ Em um cristal piezoelétrico, o comportamento dinâmico é caracterizado por mod
 - Axial(espessura): frequência governada pela espessura do componente, operando em frequências mais altas (MHz).
 
 
-A tabela abaixo sumariza os modos de vibração e suas respsctivas aplicações. Chamamos a atenção para "*Area expansion mode*" (radial) e "*Thickness expansion mode*" (axial).
+A tabela abaixo sumariza os modos de vibração e suas respectivas aplicações. Chamamos a atenção para "*Area expansion mode*" (radial) e "*Thickness expansion mode*" (axial).
 
 <div align=center>
 <h5>Figura 5: Modos de vibração do cristal</h5>
@@ -72,7 +72,7 @@ Para caracterizar o cristal, utilizamos um osciloscópio com o seguinte *setup*:
 
 
 
-Para equilibrar o divisor de tensão, usamos resistores próximos a impedância estimada do cristal. 
+Para equilibrar o divisor de tensão, usamos resistores próximos a impedância estimada do cristal.
 
 O fabricante garante que o cristal tem uma impedância de ressonância inferior a $20 \Omega$, portanto, usamos resistores de $51.2 \Omega$ e $3279 \Omega$ para encontrar, respectivamente, a impedância de ressonância e anti-ressonância em ambos os modos axial e radial de acordo com a fórmula do divisor de tensão:
 
@@ -160,7 +160,7 @@ Obtendo os valores de $V_{CH1}$ (Vamp1) e $V_{CH2}$ (Vamp2) pelo osciloscópio:
 </div><br><br>
 
 
-Com os valores de tensão conhecidos, opdemos calcular o divisor de tensão para $R_{cristal}$.
+Com os valores de tensão conhecidos, podemos calcular o divisor de tensão para $R_{cristal}$.
 
 - Modo AXIAL
 
