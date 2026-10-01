@@ -9,26 +9,24 @@ A topologia escolhida foi a opção **4: Fonte externa + Casamento de impedânci
 Esta topologia é a mais adequada pois traz um transformador *push-pull* que permite a conversão de energia através do casamento de impedância entre o primário e secundário, sendo necessárias apenas duas chaves *low-side* para realizar a comutação.
 
 
-<br>
 <div align=center>
-Figura 1: Topologia escolhida
+<h5>Figura 1: Topologia escolhida</h5>
 <img src="img/push-pull.png" width="800">
-</div> <br><br>
+</div> <br>
 
 É possível fazer o controle de potência tanto por tensão quanto por frequência, utilizando PWM e *timer*.
 
-<br>
-<div align=center>Figura 2: Timer e PWM
 
+<div align=center>
+<h5>Figura 2: Timer e PWM</h5>
 <img src="img/pwm-timer.png" width="500">
 </div> <br><br>
 
 
 O cristal pode ser considerado uma carga capacitiva. Com corrente constante, a tensão no capacitor é linear, portanto há um controle fino do movimento.
 
-<br>
-<div align=center>Figura 3: Corrente constante X Tensão constante no capacitor
-
+<div align=center>
+<h5>Figura 3: Corrente constante X Tensão constante no capacitor</h5>
 <img src="img/cap_curr.png" width="350">
 <img src="img/cap_volt.png" width="358">
 </div> <br><br>
@@ -39,10 +37,8 @@ Neste projeto, não há necessidade de controle fino da vibração, portanto pod
 
 A fonte usada para a alimentação será de 24V/5A:
 
-
-<br>
-<div align=center>Figura 4: Fonte externa
-
+<div align=center>
+<h5>Figura 4: Fonte externa</h5>
 <img src="img/fonte.png" width="350">
 </div> <br><br>
 
@@ -55,17 +51,15 @@ A tabela abaixo sumariza os modos de vibração e suas respsctivas aplicações.
 
 O modo com o qual visamos trabalhar é o **radial**. O modo axial, por conta de sua frequência de operação muito elevada, é melhor aproveitado em aplicações como atomizadores e umidificadores.
 
-<br>
-<div align=center>Figura 5: Modos de vibração do cristal
-
+<div align=center>
+<h5>Figura 5: Modos de vibração do cristal</h5>
 <img src="img/vibration.png" width="400">
 </div> <br><br>
 
 Para caracterizar o cristal, utilizamos um osciloscópio com o seguinte *setup*:
 
-<br>
-<div align=center>Figura 6: Diagrama de conexões para caracterizar o cristal
-
+<div align=center>
+<h5>Figura 6: Diagrama de conexões para caracterizar o cristal</h5>
 <img src="img/caracterizacao.png" width="400">
 </div> <br><br>
 
@@ -86,8 +80,8 @@ Primeiramente, obtivemos informações de frequência apenas com o resistor de $
 
 >OBS: Há alguns momentos em que a medição no osciloscópio falha, ocasionando vales bruscos não característicos do sistema real. Essas medições estão identificadas como "nan" nos arquivos .csv disponíveis em [hardware/bode](etapa_2/hardware/bode).
 
-<div align=center>Figura 7: Bode Plot com cristal desconectado
-
+<div align=center>
+<h5>Figura 7: Bode Plot com cristal desconectado</h5>
 <img src="img/setup_bode.png" width="500">
 </div><br>
 
@@ -97,37 +91,38 @@ Agora,  as informações de frequência para cada resistor.
 
 - Resistor de $3179 \Omega$
 
-    <div align=center>Figura 8: Bode Plot de banda completa
-
+    <div align=center>
+    <h5>Figura 8: Bode Plot de banda completa</h5>
     <img src="img/R3k_bode_full.png" width="500">
     </div>
 
-    <div align=center>Figura 9: Bode Plot com zoom no modo axial
-
+    <div align=center>
+    <h5>Figura 9: Bode Plot com zoom no modo axial</h5>
     <img src="img/R3k_axial_bode.png" width="500">
     </div>
 
-    <div align=center>Figura 10: Bode Plot com zoom no modo radial
-
+    <div align=center>
+    <h5>Figura 10: Bode Plot com zoom no modo radial</h5>
     <img src="img/R3k_radial_bode.png" width="500">
     </div>
 
 <br>
 
+
 - Resistor de $51.2 \Omega$
 
-    <div align=center>Figura 11: Bode Plot de banda completa
-
+    <div align=center>
+    <h5>Figura 11: Bode Plot de banda completa</h5>
     <img src="img/R51_bode_full.png" width="500">
     </div>
 
-    <div align=center>Figura 12: Bode Plot com zoom no modo axial
-
+    <div align=center>
+    <h5>Figura 12: Bode Plot com zoom no modo axial</h5>
     <img src="img/R51_axial_bode.png" width="500">
     </div>
 
-    <div align=center>Figura 13: Bode Plot com zoom no modo radial
-
+    <div align=center>
+    <h5>Figura 13: Bode Plot com zoom no modo radial</h5>
     <img src="img/R51_radial_bode.png" width="500">
     </div>
 
@@ -137,28 +132,26 @@ Agora,  as informações de frequência para cada resistor.
 
 Obtendo os valores de $V_{CH1}$ (Vamp1) e $V_{CH2}$ (Vamp2) pelo osciloscópio:
 
-<div align=center>Figura 14: Resistor de 51.2Ω (Modo AXIAL)
-
+<div align=center>
+<h5>Figura 14: Resistor de 51.2Ω (Modo AXIAL)</h5>
 <img src="img/R51_axial.png" width="500">
 </div>
 
-<br>
-<div align=center>Figura 15: Resistor de 51.2Ω (Modo RADIAL)
-
+<div align=center>
+<h5>Figura 15: Resistor de 51.2Ω (Modo RADIAL)</h5>
 <img src="img/R51_radial.png" width="500">
 </div>
 
-<br>
-<div align=center>Figura 16: Resistor de 3279Ω (Modo AXIAL)
-
+<div align=center>
+<h5>Figura 16: Resistor de 3279Ω (Modo AXIAL)</h5>
 <img src="img/R3k_axial.png" width="500">
 </div>
 
-<br>
-<div align=center>Figura 17: Resistor de 3279Ω (Modo RADIAL)
-
+<div align=center>
+<h5>Figura 17: Resistor de 3279Ω (Modo RADIAL)</h5>
 <img src="img/R3k_radial.png" width="500">
-</div> <br><br>
+</div><br><br>
+
 
 Com os valores de tensão conhecidos, opdemos calcular o divisor de tensão para $R_{cristal}$.
 
@@ -194,8 +187,8 @@ O fabricante disponibiliza uma tabela de valores padrão para o cristal dependen
 
 O valor da capacitância de placa padrão é de $6940 \pm 15 \% \text{ pF}$. Este valor condiz com o medido com multímetro, de aproximadamente $6.241 \text{ nF}$.
 
-<div align=center>Figura 18: Informações do fabricante
-
+<div align=center>
+<h5>Figura 18: Informações do fabricante</h5>
 <img src="img/fabricante.jpeg" width="500">
 </div> <br><br>
 
@@ -219,15 +212,15 @@ Como a impedância do sistema é variável, é importante também obter os valor
 
 É aconselhado fazer pequenas ranhuras na bacia para melhor aderência do adesivo.
 
-<div align=center>Figura 19: Ranhuras no ponto de fixação do cristal
-
+<div align=center>
+<h5>Figura 19: Ranhuras no ponto de fixação do cristal</h5>
 <img src="img/fixacao.jpeg" width="400">
 </div><br>
 
 Foi utilizado DUREPOXI para a fixação do cristal na cuba de aço.
 
-<div align=center>Figura 20: Fixação do cristal
-
+<div align=center>
+<h5>Figura 20: Fixação do cristal</h5>
 <img src="img/fixacao2.jpeg" width="400">
 <img src="img/fixacao3.jpeg" width="384">
 </div>
@@ -251,13 +244,13 @@ O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
 - 4 AMPOPs internos.
 
 
-<div align=center>Figura 20: Microcontrolador escolhido
-
+<div align=center>
+<h5>Figura 21: Microcontrolador escolhido</h5>
 <img src="img/stm.png" width="300">
 </div>
 
-<div align=center>Figura 21: Features do microcontrolador
-
+<div align=center>
+<h5>Figura 22: Features do microcontrolador</h5>
 <img src="img/stm_features.avif" width="400">
 </div>
 
@@ -276,8 +269,8 @@ O teste feito usa o *encoder* para incrementar/decrementar um contador, enquanto
 
 O código está disponível em [software](etapa_2/software).
 
-<div align=center>Figura 22: Teste display + encoder
-
+<div align=center>
+<h5>Figura 23: Teste display + encoder</h5>
 <img src="img/display.gif" width="400">
 </div>
 
@@ -298,7 +291,7 @@ Para o teste, seguimos a seguinte configuração do TIMER 1 com ARR = 1440:
 
 <br>
 <div align=center>Figura 23: Combined PWM Mode 1
-
+<h5>Figura 24: Combined PWM Mode 1</h5>
 <img src="img/pwm_doc.png" width="400">
 </div><br>
 
@@ -311,7 +304,7 @@ $$ D = \frac{CCR_{max}}{ARR} \qquad \rightarrow \qquad D = \frac{500}{1440} \app
 
 <br>
 <div align=center>Figura 24: Duty do CH1
-
+<h5>Figura 25: Duty do CH1</h5>
 <img src="img/duty.jpeg" width="300">
 </div><br><br>
 
@@ -321,7 +314,7 @@ $$ D = \frac{CCR_{max}}{ARR}\qquad \rightarrow \qquad D = \frac{1220}{1440} \app
 
 <br>
 <div align=center>Figura 25: Duty do CH2
-
+<h5>Figura 26: Duty do CH2</h5>
 <img src="img/duty1.jpeg" width="300">
 </div><br><br>
 
