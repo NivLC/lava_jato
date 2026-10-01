@@ -243,7 +243,21 @@ Uma simples tela de confirmação é o suficiente. Uma mensagem deverá aparecer
 
 ## Design externo do recepiente
 
-Por maior facilidade de desenvolvimento, optou-se por fabricar a carenagem impressa em 3D, levando-se em consideração a interface de controle decidida anteriormente.
+A cuba interna precisa ser de INOX, e é mostrada na **Figura 20**. Já a cestinha interna deve ser vazada, com área de abertura suficiente para que a onda ultrassônica, propagando-se na água, consiga atravessar. Além disso, encontrar uma cestinha inox que se ajuste à nossa cuba é um empencilho grande.  
+O comprimento de onda é dado por:
+
+$\lambda=c/f$ ,    c a velocidade da onda na água  
+$\lambda=1500/40k$  
+$\lambda=37,5 mm$  
+
+Considerando essas informações, decidiu-se fabricar a cestinha a partir da tela mostrada na **Figura 21**, feita em fibra de vidro revestida por teflon.
+
+<div align=center>
+<h5>Figura 21: Tela em fibra de vidro</h5>
+<img src="img/tela.webp" width="400">
+</div><br>
+
+Onde o vão da tela é de $4mm$, ~9 vezes menor que o $\lambda$. Além disso, optou-se por fabricar a carenagem externa impressa em 3D, levando-se em consideração a interface de controle decidida anteriormente.
 
 ## Escolha do embarcado
 
@@ -261,12 +275,12 @@ O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
 
 
 <div align=center>
-<h5>Figura 21: Microcontrolador escolhido</h5>
+<h5>Figura 22: Microcontrolador escolhido</h5>
 <img src="img/stm.png" width="300">
 </div>
 
 <div align=center>
-<h5>Figura 22: Features do microcontrolador</h5>
+<h5>Figura 23: Features do microcontrolador</h5>
 <img src="img/stm_features.avif" width="400">
 </div>
 
@@ -281,7 +295,7 @@ O teste feito usa o *encoder* para incrementar/decrementar um contador, enquanto
 O código está disponível em [software](etapa_2/software).
 
 <div align=center>
-<h5>Figura 23: Teste display + encoder</h5>
+<h5>Figura 24: Teste display + encoder</h5>
 <img src="img/display.gif" width="400">
 </div>
 
@@ -299,7 +313,7 @@ Para o teste, seguimos a seguinte configuração do TIMER 1 com ARR = 1440:
 
 <br>
 <div align=center>
-<h5>Figura 24: Combined PWM Mode 1</h5>
+<h5>Figura 25: Combined PWM Mode 1</h5>
 <img src="img/pwm_doc.png" width="400">
 </div><br>
 
@@ -312,7 +326,7 @@ $$ D = \frac{CCR_{max}}{ARR} \qquad \rightarrow \qquad D = \frac{500}{1440} \app
 
 <br>
 <div align=center>
-<h5>Figura 25: Duty do CH1</h5>
+<h5>Figura 26: Duty do CH1</h5>
 <img src="img/duty.jpeg" width="300">
 </div><br><br>
 
@@ -322,7 +336,7 @@ $$ D = \frac{CCR_{max}}{ARR}\qquad \rightarrow \qquad D = \frac{1220}{1440} \app
 
 <br>
 <div align=center>
-<h5>Figura 26: Duty do CH2</h5>
+<h5>Figura 27: Duty do CH2</h5>
 <img src="img/duty1.jpeg" width="300">
 </div><br><br>
 
