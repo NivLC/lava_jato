@@ -1,12 +1,18 @@
 # Etapa 2 - Design
 
-A etapa 2 visa, principalmente, caracterizar o cristal piezoelétrico e planejar os controles, iniciando testes.
+Na etapa 2, objetiva-se:
+- Detalhar a tolpologia escolhida na etapa 1;
+- Caracterizar o piezoelétrico;
+- Decidir Interface de controle;
+    - Estudar possibilidade de trava de segurança;
+- Definir design externo do recepiente;
+- Escolher microcontrolador;
+- Testes.
 
-## Topologia
+## Topologia 4: Fonte externa + Casamento de impedância
 
-A topologia escolhida foi a opção **4: Fonte externa + Casamento de impedância**.
-
-Esta topologia é a mais adequada pois traz um transformador *push-pull* que permite a conversão de energia através do casamento de impedância entre o primário e secundário, sendo necessárias apenas duas chaves *low-side* para realizar a comutação.
+Por ser composta por um transformador *push-pull* que permite a conversão de energia através do casamento de impedância entre o primário e secundário, com apenas de duas chaves *low-side* para realizar a comutação, a topologia 4 é a mais adequada.  
+Utilizando PWM e *timer*, o controle de potência é possível por tensão e/ou frequência, conforme Figuras 1 e 2.
 
 
 <div align=center>
@@ -14,7 +20,6 @@ Esta topologia é a mais adequada pois traz um transformador *push-pull* que per
 <img src="img/push-pull.png" width="800">
 </div> <br>
 
-É possível fazer o controle de potência tanto por tensão quanto por frequência, utilizando PWM e *timer*.
 
 
 <div align=center>
@@ -44,17 +49,19 @@ A fonte usada para a alimentação será de 24V/5A:
 
 ## Caracterização do cristal
 
-Em um cristal piezoelétrico (como um disco ou cilindro cerâmico), o comportamento dinâmico é caracterizado por modos de vibração fundamentais: Radial (planar) e axial (espessura).
-A principal diferença é que a frequência axial é governada pela espessura do componente, operando em frequências mais altas (MHz), enquanto a frequência radial é governada pelo diâmetro, operando em faixas mais baixas (kHz).
+Em um cristal piezoelétrico, o comportamento dinâmico é caracterizado por modos de vibração fundamentais: 
+- Radial(planar): frequência governada pelo diâmetro, operando em faixas mais baixas (kHz);
+- Axial(espessura): frequência governada pela espessura do componente, operando em frequências mais altas (MHz).
 
-A tabela abaixo sumariza os modos de vibração e suas respsctivas aplicações. Neste caso, chamaremos a atenção para "*Area expansion mode*" (radial) e "*Thickness expansion mode*" (axial).
 
-O modo com o qual visamos trabalhar é o **radial**. O modo axial, por conta de sua frequência de operação muito elevada, é melhor aproveitado em aplicações como atomizadores e umidificadores.
+A tabela abaixo sumariza os modos de vibração e suas respsctivas aplicações. Chamamos a atenção para "*Area expansion mode*" (radial) e "*Thickness expansion mode*" (axial).
 
 <div align=center>
 <h5>Figura 5: Modos de vibração do cristal</h5>
 <img src="img/vibration.png" width="400">
 </div> <br><br>
+
+O modo que visamos trabalhar é o **radial**. O modo axial, por conta de sua frequência de operação muito elevada, é melhor aproveitado em aplicações como atomizadores e umidificadores.
 
 Para caracterizar o cristal, utilizamos um osciloscópio com o seguinte *setup*:
 
@@ -192,7 +199,7 @@ O valor da capacitância de placa padrão é de $6940 \pm 15 \% \text{ pF}$. Est
 
 Para o modo radial, temos os seguintes resultados:
 
-|  |  |
+| Parâmetro | Valor |
 |:-------|:-------------|
 | Ressonância | 79.85 kHz |
 | Anti-ressonância | 94.54 kHz |
@@ -225,18 +232,28 @@ Foi utilizado DUREPOXI para a fixação do cristal na cuba de aço.
 
 
 #### Impedância do cristal
-                                                                                            
+
+## Interface de controle
+
+Para a interface de controle, optou-se por utilizar um *encoder* rotativo em conjunto com um display(OLED SSD1306 128x64 5V), que servirão de base para a interface humano-máquina.
+
+### Trava de segurança
+
+Uma simples tela de confirmação é o suficiente. Uma mensagem deverá aparecer confirmando se o usuário gostaria de prosseguir ou se deseja cancelar a operação.
+
+## Design externo do recepiente
+
+Por maior facilidade de desenvolvimento, optou-se por fabricar a carenagem impressa em 3D, levando-se em consideração a interface de controle decidida anteriormente.
+
 ## Escolha do embarcado
 
-### Requisitos
+A seguinte tabela resume a análise de requisitos, comparando diferentes microcontroladores:
 
-- Dois ADCs;
-- Frequência de ADC de 2~4x maior que a de comutação;
-- Dois AMPOPs integrados.
-
+<div align=center>
 <img width="1331" height="210" alt="image" src="https://github.com/user-attachments/assets/1d630d40-3c3e-4979-962a-a28e4ee8cc5c" />
+</div><br>
 
-
+O requisito de frequência de amostragem foi obtido com base no critério de Nyquist(2~4x maior que a de comutação).  
 O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
 
 - 4 ADCs de 0.14 MHz a 72 MHz;
@@ -253,16 +270,11 @@ O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
 <img src="img/stm_features.avif" width="400">
 </div>
 
-
 ## Testes
 
 Para a realização dos testes, foi fabricada uma PCB. A documentação detalhada se encontra em [hardware/README.md](etapa_2/hardware/README.md).
 
 ### *Display* e *encoder*
-
-O *display* utilizado é um OLED SSD1306 128x64 5V.
-
-Um *encoder* rotativo será utilizado para interfacear com usuário.
 
 O teste feito usa o *encoder* para incrementar/decrementar um contador, enquanto uma bola quica. Ao pressionar o botão, a cor do *display* muda e a bola sofre uma força de sentido contrário.
 
@@ -273,9 +285,6 @@ O código está disponível em [software](etapa_2/software).
 <img src="img/display.gif" width="400">
 </div>
 
-### Trava de segurança
-
-Uma simples tela de confirmação é o suficiente. Uma mensagem deverá aparecer confirmando se o usuário gostaria de prosseguir ou se deseja cancelar a operação.
 
 ### Configuração de *timer* e PWM (Sem *driver*)
 
