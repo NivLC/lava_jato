@@ -234,6 +234,9 @@ Foi utilizado DUREPOXI para a fixação do cristal na cuba de aço.
 - Frequência de ADC de 2~4x maior que a de comutação;
 - Dois AMPOPs integrados.
 
+<img width="1331" height="210" alt="image" src="https://github.com/user-attachments/assets/1d630d40-3c3e-4979-962a-a28e4ee8cc5c" />
+
+
 O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
 
 - 4 ADCs de 0.14 MHz a 72 MHz;
