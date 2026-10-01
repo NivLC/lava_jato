@@ -159,25 +159,25 @@ Com os valores de tensão conhecidos, opdemos calcular o divisor de tensão para
 
     - **Ressonância**
 
-        $ 0.0057744 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad 
-        \rightarrow \qquad {R_{cristal}} = 0.305 \Omega $
+        $$ 0.0057744 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad 
+        \rightarrow \qquad {R_{cristal}} = 0.305 \Omega $$
     
     - **Anti-ressonância**
 
-        $ 0.21294 = 0.95542 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad 
-        \rightarrow \qquad {R_{cristal}} = 940.402 \Omega $
+        $$ 0.21294 = 0.95542 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad 
+        \rightarrow \qquad {R_{cristal}} = 940.402 \Omega $$
 
 - Modo RADIAL
 
     - **Ressonância**
 
-        $ 0.32061 = 1.1484 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad 
-        \rightarrow \qquad {R_{cristal}} = 19.8301 \Omega $
+        $$ 0.32061 = 1.1484 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad 
+        \rightarrow \qquad {R_{cristal}} = 19.8301 \Omega $$
     
     - **Anti-ressonância**
 
-        $ 0.66272 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad 
-        \rightarrow \qquad {R_{cristal}} = 6964.93 \Omega $
+        $$ 0.66272 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad 
+        \rightarrow \qquad {R_{cristal}} = 6964.93 \Omega $$
 
 <br>
 
@@ -290,7 +290,7 @@ Para o teste, seguimos a seguinte configuração do TIMER 1 com ARR = 1440:
 | CH4     | PWM1 (No output)         |      1220 |
 
 <br>
-<div align=center>Figura 23: Combined PWM Mode 1
+<div align=center>
 <h5>Figura 24: Combined PWM Mode 1</h5>
 <img src="img/pwm_doc.png" width="400">
 </div><br>
@@ -303,7 +303,7 @@ Para calcular o *duty cycle*:
 $$ D = \frac{CCR_{max}}{ARR} \qquad \rightarrow \qquad D = \frac{500}{1440} \approx 34.7\% $$
 
 <br>
-<div align=center>Figura 24: Duty do CH1
+<div align=center>
 <h5>Figura 25: Duty do CH1</h5>
 <img src="img/duty.jpeg" width="300">
 </div><br><br>
@@ -313,14 +313,14 @@ $$ D = \frac{CCR_{max}}{ARR} \qquad \rightarrow \qquad D = \frac{500}{1440} \app
 $$ D = \frac{CCR_{max}}{ARR}\qquad \rightarrow \qquad D = \frac{1220}{1440} \approx 84.7 \% $$
 
 <br>
-<div align=center>Figura 25: Duty do CH2
+<div align=center>
 <h5>Figura 26: Duty do CH2</h5>
 <img src="img/duty1.jpeg" width="300">
 </div><br><br>
 
 A partir da medição de frequência do osciloscópio podemos validar também o funcionamento do *timer*:
 
-$ f = \frac{f_{timer}}{ARR} = \frac{144 MHz}{1440} = 100 kHz $
+$$ f = \frac{f_{timer}}{ARR} = \frac{144 MHz}{1440} = 100 kHz $$
 
 
 ## Referências
