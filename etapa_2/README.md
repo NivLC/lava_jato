@@ -227,31 +227,6 @@ Para o modo radial, temos os seguintes resultados:
 | Capacitância de placa | 6.241 nF |
 
 
-
-### Cristal fixado
-
-Como a impedância do sistema é variável, é importante também obter os valores com o cristal fixado na estrutura de limpeza.
-
-É aconselhado fazer pequenas ranhuras na bacia para melhor aderência do adesivo.
-
-<div align=center>
-<h5>Figura 19: Ranhuras no ponto de fixação do cristal</h5>
-<img src="img/fixacao.jpeg" width="400">
-</div><br>
-
-Foi utilizado DUREPOXI para a fixação do cristal na cuba de aço.
-
-<div align=center>
-<h5>Figura 20: Fixação do cristal</h5>
-<img src="img/fixacao2.jpeg" width="400">
-<img src="img/fixacao3.jpeg" width="384">
-</div>
-
-#### Frequências do cristal
-
-
-#### Impedância do cristal
-
 ## Interface de controle
 
 Para a interface de controle, optou-se por utilizar um *encoder* rotativo em conjunto com um display(OLED SSD1306 128x64 5V), que servirão de base para a interface humano-máquina.
@@ -262,7 +237,14 @@ A resistência mecânica ao movimento do piezoelétrico gera uma variação na i
 
 ## Design externo do recipiente
 
-A cuba interna precisa ser de INOX, e é mostrada na **Figura 20**. Já a cestinha interna deve ser vazada, com área de abertura suficiente para que a onda ultrassônica, propagando-se na água, consiga atravessar. Além disso, encontrar uma cestinha inox que se ajuste à nossa cuba é um empecilho grande.  
+A cuba interna precisa ser de INOX, e é mostrada na **Figura 19**.
+
+<div align=center>
+<h5>Figura 19: Tela em fibra de vidro</h5>
+<img src="fixacao.jpeg" width="400">
+</div><br>
+
+Já a cestinha interna deve ser vazada, com área de abertura suficiente para que a onda ultrassônica, propagando-se na água, consiga atravessar. Além disso, encontrar uma cestinha inox que se ajuste à nossa cuba é um empecilho grande.  
 O comprimento de onda é dado por:
 
 $\lambda=c/f$ ,    c a velocidade da onda na água  
@@ -272,7 +254,7 @@ $\lambda=37,5 mm$
 Considerando essas informações, decidiu-se fabricar a cestinha a partir da tela mostrada na **Figura 21**, feita em fibra de vidro revestida por teflon.
 
 <div align=center>
-<h5>Figura 21: Tela em fibra de vidro</h5>
+<h5>Figura 20: Tela em fibra de vidro</h5>
 <img src="img/tela.webp" width="400">
 </div><br>
 
@@ -283,7 +265,7 @@ Onde o vão da tela é de $4mm$, ~9 vezes menor que o $\lambda$. Além disso, op
 A seguinte tabela resume a análise de requisitos, comparando diferentes microcontroladores:
 
 <div align=center>
-<h5>Figura 22: Comparação entre microcontroladores</h5>
+<h5>Figura 21: Comparação entre microcontroladores</h5>
 <img src="img/microcontrolador.png" width="1000">
 </div><br>
 
@@ -295,12 +277,12 @@ O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
 
 
 <div align=center>
-<h5>Figura 23: Microcontrolador escolhido</h5>
+<h5>Figura 22: Microcontrolador escolhido</h5>
 <img src="img/stm.png" width="300">
 </div>
 
 <div align=center>
-<h5>Figura 24: Features do microcontrolador</h5>
+<h5>Figura 23: Features do microcontrolador</h5>
 <img src="img/stm_features.avif" width="400">
 </div>
 
@@ -315,7 +297,7 @@ O teste feito usa o *encoder* para incrementar/decrementar um contador, enquanto
 O código está disponível em [software](etapa_2/software).
 
 <div align=center>
-<h5>Figura 25: Teste display + encoder</h5>
+<h5>Figura 24: Teste display + encoder</h5>
 <img src="img/display.gif" width="400">
 </div>
 
@@ -333,7 +315,7 @@ Para o teste, seguimos a seguinte configuração do TIMER 1 com ARR = 1440:
 
 <br>
 <div align=center>
-<h5>Figura 26: Combined PWM Mode 1</h5>
+<h5>Figura 25: Combined PWM Mode 1</h5>
 <img src="img/pwm_doc.png" width="400">
 </div><br>
 
@@ -346,7 +328,7 @@ $$ D = \frac{CCR_{max}}{ARR} \qquad \rightarrow \qquad D = \frac{500}{1440} \app
 
 <br>
 <div align=center>
-<h5>Figura 27: Duty do CH1</h5>
+<h5>Figura 26: Duty do CH1</h5>
 <img src="img/duty.jpeg" width="300">
 </div><br><br>
 
@@ -356,7 +338,7 @@ $$ D = \frac{CCR_{max}}{ARR}\qquad \rightarrow \qquad D = \frac{1220}{1440} \app
 
 <br>
 <div align=center>
-<h5>Figura 28: Duty do CH2</h5>
+<h5>Figura 27: Duty do CH2</h5>
 <img src="img/duty1.jpeg" width="300">
 </div><br><br>
 
