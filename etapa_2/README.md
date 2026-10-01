@@ -159,25 +159,21 @@ Com os valores de tensão conhecidos, opdemos calcular o divisor de tensão para
 
     - **Ressonância**
 
-        $$ 0.0057744 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad 
-        \rightarrow \qquad {R_{cristal}} = 0.305 \Omega $$
+$$ 0.0057744 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad \rightarrow \qquad {R_{cristal}} = 0.305 \Omega $$
     
     - **Anti-ressonância**
 
-        $$ 0.21294 = 0.95542 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad 
-        \rightarrow \qquad {R_{cristal}} = 940.402 \Omega $$
+$$ 0.21294 = 0.95542 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad \rightarrow \qquad {R_{cristal}} = 940.402 \Omega $$
 
 - Modo RADIAL
 
     - **Ressonância**
 
-        $$ 0.32061 = 1.1484 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad 
-        \rightarrow \qquad {R_{cristal}} = 19.8301 \Omega $$
+$$ 0.32061 = 1.1484 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad \rightarrow \qquad {R_{cristal}} = 19.8301 \Omega $$
     
     - **Anti-ressonância**
 
-        $$ 0.66272 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad 
-        \rightarrow \qquad {R_{cristal}} = 6964.93 \Omega $$
+$$ 0.66272 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad \rightarrow \qquad {R_{cristal}} = 6964.93 \Omega $$
 
 <br>
 
