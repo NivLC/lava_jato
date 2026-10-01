@@ -239,11 +239,11 @@ Para a interface de controle, optou-se por utilizar um *encoder* rotativo em con
 
 ### Trava de segurança
 
-Uma simples tela de confirmação é o suficiente. Uma mensagem deverá aparecer confirmando se o usuário gostaria de prosseguir ou se deseja cancelar a operação.
+A resistência mecânica ao movimento do piezoelétrico gera uma variação na impedância enxergada pela corrente que passa por ele, o que leva a uma variável incômoda: a corrente será maior do que o esperado se a bacia estiver vazia, o que pode queimar o transdutor. Uma simples tela de confirmação é o suficiente para garantir que o usuário não ligue o sistema sem água na bacia. Uma mensagem deverá aparecer para o usuário confirmar que a bacia está cheia e que o usuário gostaria de prosseguir ou se deseja cancelar a operação.
 
-## Design externo do recepiente
+## Design externo do recipiente
 
-A cuba interna precisa ser de INOX, e é mostrada na **Figura 20**. Já a cestinha interna deve ser vazada, com área de abertura suficiente para que a onda ultrassônica, propagando-se na água, consiga atravessar. Além disso, encontrar uma cestinha inox que se ajuste à nossa cuba é um empencilho grande.  
+A cuba interna precisa ser de INOX, e é mostrada na **Figura 20**. Já a cestinha interna deve ser vazada, com área de abertura suficiente para que a onda ultrassônica, propagando-se na água, consiga atravessar. Além disso, encontrar uma cestinha inox que se ajuste à nossa cuba é um empecilho grande.  
 O comprimento de onda é dado por:
 
 $\lambda=c/f$ ,    c a velocidade da onda na água  
