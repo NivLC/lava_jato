@@ -160,25 +160,48 @@ Obtendo os valores de $V_{CH1}$ (Vamp1) e $V_{CH2}$ (Vamp2) pelo osciloscópio:
 </div><br><br>
 
 
-Com os valores de tensão conhecidos, podemos calcular o divisor de tensão para $R_{cristal}$.
+Com os valores de tensão conhecidos, podemos calcular o divisor de tensão para $R_{\mathrm{cristal}}$.
 
-- Modo AXIAL
+### Modo AXIAL
 
-    - **Ressonância**
-$$ 0.0057744 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad \rightarrow \qquad {R_{cristal}} = 0.305 \Omega $$
+**Ressonância**
 
-    - **Anti-ressonância** 
-$$ 0.21294 = 0.95542 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad \rightarrow \qquad {R_{cristal}} = 940.402 \Omega $$
+$$
+0.0057744 = 0.97472 \cdot
+\frac{R_{\mathrm{cristal}}}{R_{\mathrm{cristal}} + 51.2}
+\qquad \rightarrow \qquad
+R_{\mathrm{cristal}} = 0.305\ \Omega
+$$
 
-- Modo RADIAL
+**Anti-ressonância**
 
-    - **Ressonância**
-$$ 0.32061 = 1.1484 \cdot \frac{R_{cristal}}{R_{cristal} + 51.2} \qquad \rightarrow \qquad {R_{cristal}} = 19.8301 \Omega $$
+$$
+0.21294 = 0.95542 \cdot
+\frac{R_{\mathrm{cristal}}}{R_{\mathrm{cristal}} + 3279}
+\qquad \rightarrow \qquad
+R_{\mathrm{cristal}} = 940.402\ \Omega
+$$
 
-    - **Anti-ressonância**
-$$ 0.66272 = 0.97472 \cdot \frac{R_{cristal}}{R_{cristal} + 3279} \qquad \rightarrow \qquad {R_{cristal}} = 6964.93 \Omega $$
+### Modo RADIAL
 
-<br>
+**Ressonância**
+
+$$
+0.32061 = 1.1484 \cdot
+\frac{R_{\mathrm{cristal}}}{R_{\mathrm{cristal}} + 51.2}
+\qquad \rightarrow \qquad
+R_{\mathrm{cristal}} = 19.8301\ \Omega
+$$
+
+**Anti-ressonância**
+
+$$
+0.66272 = 0.97472 \cdot
+\frac{R_{\mathrm{cristal}}}{R_{\mathrm{cristal}} + 3279}
+\qquad \rightarrow \qquad
+R_{\mathrm{cristal}} = 6964.93\ \Omega
+$$
+
 
 #### Capacitância
 
