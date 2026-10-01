@@ -283,7 +283,8 @@ Onde o vão da tela é de $4mm$, ~9 vezes menor que o $\lambda$. Além disso, op
 A seguinte tabela resume a análise de requisitos, comparando diferentes microcontroladores:
 
 <div align=center>
-<img width="1331" height="210" alt="image" src="https://github.com/user-attachments/assets/1d630d40-3c3e-4979-962a-a28e4ee8cc5c" />
+<h5>Figura 22: Comparação entre microcontroladores</h5>
+<img src="img/microcontrolador.png" width="1000">
 </div><br>
 
 O requisito de frequência de amostragem foi obtido com base no critério de Nyquist(2~4x maior que a de comutação).  
@@ -294,12 +295,12 @@ O embarcado escolhido para esta aplicação foi o **STM32F303RET6**, possuindo:
 
 
 <div align=center>
-<h5>Figura 22: Microcontrolador escolhido</h5>
+<h5>Figura 23: Microcontrolador escolhido</h5>
 <img src="img/stm.png" width="300">
 </div>
 
 <div align=center>
-<h5>Figura 23: Features do microcontrolador</h5>
+<h5>Figura 24: Features do microcontrolador</h5>
 <img src="img/stm_features.avif" width="400">
 </div>
 
@@ -314,7 +315,7 @@ O teste feito usa o *encoder* para incrementar/decrementar um contador, enquanto
 O código está disponível em [software](etapa_2/software).
 
 <div align=center>
-<h5>Figura 24: Teste display + encoder</h5>
+<h5>Figura 25: Teste display + encoder</h5>
 <img src="img/display.gif" width="400">
 </div>
 
@@ -332,7 +333,7 @@ Para o teste, seguimos a seguinte configuração do TIMER 1 com ARR = 1440:
 
 <br>
 <div align=center>
-<h5>Figura 25: Combined PWM Mode 1</h5>
+<h5>Figura 26: Combined PWM Mode 1</h5>
 <img src="img/pwm_doc.png" width="400">
 </div><br>
 
@@ -345,7 +346,7 @@ $$ D = \frac{CCR_{max}}{ARR} \qquad \rightarrow \qquad D = \frac{500}{1440} \app
 
 <br>
 <div align=center>
-<h5>Figura 26: Duty do CH1</h5>
+<h5>Figura 27: Duty do CH1</h5>
 <img src="img/duty.jpeg" width="300">
 </div><br><br>
 
@@ -355,7 +356,7 @@ $$ D = \frac{CCR_{max}}{ARR}\qquad \rightarrow \qquad D = \frac{1220}{1440} \app
 
 <br>
 <div align=center>
-<h5>Figura 27: Duty do CH2</h5>
+<h5>Figura 28: Duty do CH2</h5>
 <img src="img/duty1.jpeg" width="300">
 </div><br><br>
 
