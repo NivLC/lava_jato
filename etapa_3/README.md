@@ -49,11 +49,103 @@ Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se h
 
 ### 1.3 Fabricação do Transformador
 
-#### Especificações de Projeto
-<!-- Inserir dados: potência, tensão de entrada/saída, frequência, relação de espiras -->
+#### 1.3.1 Especificações de Projeto 
 
-#### Cálculos de Projeto
-<!-- Inserir equações e cálculos: núcleo, número de espiras, bitola do fio, etc. -->
+As especificações de projeto são simplificadas na tabela abaixo: 
+
+<br>
+
+| Categoria | Parâmetro | Símbolo | Valor | Unidade | Observação |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Potência** | Potência do Piezo (Carga) | $P_{piezo}$ | 35 | W | |
+| | Potência de Trabalho (Projeto) | $P$ | 30 | W | Superdimensionado para folga |
+| **Primário** | Tensão do Primário | $V_{pri}$ | 24 | V | |
+| | Corrente do Primário | $I_{pri}$ | 1,25 | A | |
+| **Secundário** | Tensão do Secundário | $V_{sec}$ | 24,391 | V | |
+| | Corrente do Secundário | $I_{sec}$ | 1,230 | A | |
+| **Segurança** | Densidade de Corrente Segura | $J$ | 2 | A/mm² | |
+| | Profundidade Pelicular (Pior caso) | $\delta$ | 0,16 | mm | Para frequência de 170 kHz |
+| **Núcleo** | Tipo de Núcleo | - | ETD | - | Formato E duplo, cilindro central |
+| | Fator de Indutância | $A_L$ | 0,4825 | $\mu H/espiras^2$ | Média obtida experimentalmente |
+| | Área da Seção Transversal Efetiva | $A_e$ | 107 | mm² | Calculada com $D = 11$ mm |
+| | Área da Janela do Carretel | $A_w$ | 288 | mm² | Calculada com $32 \times 9$ mm |
+
+> Obs.: Para mais detalhes sobre como as especificações foram obtidas, clique [aqui](/etapa_3/especificacao_fundamentacao.md). As especificações do núcleo foram obtidas empíricamente, conforme descrito no arquivo.
+ 
+
+#### 1.3.2 Dimensionamento da Bitola dos Cabos
+
+Levando em consideração as especificações da tabela anterior, obteve-se os parâmetros de bitola para o primário e secundário, conforme a tabela abaixo.
+
+| Parâmetro | Símbolo | Valor | Unidade | Observação / Equivalência |
+| :--- | :--- | :--- | :--- | :--- |
+| **Primário** | | | | |
+| Diâmetro teórico mínimo | $D_{pri}$ | 0,8921 | mm | Calculado para $I = 1,25$ A |
+| Diâmetro elementar | $D_{pri\,elem}$ | 0,5150 | mm | Calculado para $N=3$ |
+| **Bitola comercial adotada** | - | **0,57** | **mm** | **Fio 23 AWG** |
+| **Secundário** | | | | |
+| Diâmetro teórico mínimo | $D_{sec}$ | 0,8849 | mm | Calculado para $I = 1,230$ A |
+| Diâmetro elementar | $D_{sec\,elem}$ | 0,5109 | mm | Calculado para $N=3$ |
+| **Bitola comercial adotada** | - | **0,51** | **mm** | **Fio 24 AWG** |
+
+> Obs.: Para mais detalhes sobre como os parâmetros foram obtidos, clique [aqui](/etapa_3/especificacao_fundamentacao.md).
+
+
+#### 1.3.4 Dimensionamento do número de Espiras
+
+**Primário**: o número de espiras do primário é obtido pela lei de Faraday para uma onda quadrada:
+
+$$
+N_P = \frac{V_Pt_{on}}{4B_{max}A_e}
+$$
+
+Onde:
+- $V_P$: tensão de pico aplicada em **metade** do primário;
+- $t_{on}=TD$: tempo efetivo de condução, onde T é o período de onda, e D o duty cycle;
+- $B$: densidade de fluxo magnético de projeto (com margem de segurança em relação ao $B_{max}$ do material)
+- $A_e$: área da seção transversal efetiva do núcleo
+
+.: A saturação do núcleo depende do produto tensão-tempo aplicado ao enrolamento (volt-segundo). O pior caso ocorre quando a tensão de entrada é máxima e o tempo de condução é máximo (50% do período).
+
+**Secundário:** 
+
+Pela relação de transformação do conversor push-pull:
+
+$$
+\frac{V_S}{V_P} = 2 \, \frac{N_S}{N_P}D
+$$
+
+$$
+N_S = \frac{1}{2} \left( \frac{V_S}{V_P} \right) \left( \frac{N_P}{D} \right)
+$$
+
+O valor final deve ser **arredondado para cima**.
+
+#### 1.3.5 Verificação da Área de Cobre
+
+Antes de enrolar, é necessário confirmar que todo o cobre cabe fisicamente na janela do carretel. Calcula-se a **Área de Cobre Nua (BCA)** de cada enrolamento:
+
+$$
+BCA = \sum_{i} \left( N_i \cdot m_i \cdot \pi \, r_i^2 \right)
+$$
+
+Onde, para cada enrolamento $i$:
+- $N_i$: número de espiras (considerando as duas metades quando houver tomada central)
+- $m_i$: número de fios em paralelo por espira
+- $r_i$: raio do fio elementar
+
+Compara-se então com a área da janela do carretel ($A_w$):
+
+$$
+\text{Área Utilizada} = \frac{BCA}{A_w} \times 100
+$$
+
+**Critério de aprovação:** $BCA$ deve ficar entre $35\%$ e $40\%$ de $A_w$.
+
+- $> 40\%$: o cobre não cabe $\rightarrow$ escolher núcleo/carretel maior
+- $\ll 40\%$: núcleo superdimensionado $\rightarrow$ escolher núcleo menor
+
+Os $60$–$65\%$ restantes são destinados a isolamento do esmalte, fator de empacotamento, fita isolante, tubos termorretráteis e espaços vazios.
 
 #### Processo de Fabricação
 <!-- Descrever o processo: enrolamento, isolamento, montagem do núcleo -->
