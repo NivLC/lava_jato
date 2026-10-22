@@ -16,15 +16,18 @@ Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se h
 
 #### 1.1.1 Buck 12V
 O conversor Buck reduz uma tensão CC contínua para uma tensão CC menor através do chaveamento de alta frequência de um transistor e do armazenamento de energia em um indutor e um capacitor.
-Usamos o CI MP2363 para criar um ponto de 12V CC a partir de 24V de alimentação de uma fonte, com base na aplicação típica mostrada no [datasheet](https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2363/?srsltid=AYCX9vLj0Yd7um0Egu9H57R6vaFL04rclYFHzbOqzPCZu6mk2dfonHHz) troamos os componentes para que a saída se adequasse a 12V para entrada de 24V. 
+Usamos o CI MP2363 para criar um ponto de 12V CC a partir de 24V de alimentação de uma fonte, com base na aplicação típica mostrada no [datasheet](https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2363/?srsltid=AYCX9vLj0Yd7um0Egu9H57R6vaFL04rclYFHzbOqzPCZu6mk2dfonHHz) trocamos os componentes para que a saída se adequasse a 12V para entrada de 24V. 
 
 <img src="img/diagrama_buck12v.1.png" width="600">
-Em seguida usamos um circuito buck para converter de 24V para 12V.
+Resumo do circuito:
 <img src="img/diagrama_buck12v.2.png" width="600">
 
-#### 1.1.2 Buck 5V
-<img src="img/diagrama_buck5v.1.png" width="800">
-<img src="img/diagrama_buck5v.2.png" width="800">
+#### 1.1.2 Buck 5V 
+Usamos o CI TPS563201 para criar um ponto de 5V CC a partir de 12V de alimentação do bloco anterior que usa MP2363, com base na aplicação típica mostrada no [datasheet](https://www.ti.com/lit/ds/symlink/tps563201.pdf?ts=1792653573582&ref_url=https%253A%252F%252Fwww.google.com%252F) trocamos os componentes para que a saída se adequasse a 5V para entrada de 12V. 
+<img src="img/diagrama_buck5v.1.png" width="600">
+<img src="img/diagrama_buck5v.2.png" width="600">
+
+
 
 ### 1.2 Layout da PCB
 
