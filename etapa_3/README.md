@@ -16,10 +16,15 @@ Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se h
 
 #### 1.1.1 Buck 12V
 O conversor Buck reduz uma tensão CC contínua para uma tensão CC menor através do chaveamento de alta frequência de um transistor e do armazenamento de energia em um indutor e um capacitor.
-Usamos o CI MP2363 para criar um ponto de 24V CC a partir da tomada (CA com 311V de pico) com base na aplicação típica mostrada no datasheet. 
+Usamos o CI MP2363 para criar um ponto de 12V CC a partir de 24V de alimentação de uma fonte, com base na aplicação típica mostrada no [datasheet](https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2363/?srsltid=AYCX9vLj0Yd7um0Egu9H57R6vaFL04rclYFHzbOqzPCZu6mk2dfonHHz) troamos os componentes para que a saída se adequasse a 12V para entrada de 24V. 
+
 <img src="img/diagrama_buck12v.1.png" width="600">
 Em seguida usamos um circuito buck para converter de 24V para 12V.
 <img src="img/diagrama_buck12v.2.png" width="600">
+
+#### 1.1.2 Buck 5V
+<img src="img/diagrama_buck5v.1.png" width="800">
+<img src="img/diagrama_buck5v.2.png" width="800">
 
 ### 1.2 Layout da PCB
 
@@ -99,7 +104,6 @@ Levando em consideração as especificações da tabela anterior, obteve-se os p
 | **Bitola comercial adotada** | - | **0,51** | **mm** | **Fio 24 AWG** |
 
 > Obs.: Para mais detalhes sobre como os parâmetros foram obtidos, clique [aqui](/etapa_3/especificacao_fundamentacao.md).
-
 
 #### 1.4.4 Dimensionamento do número de Espiras
 
