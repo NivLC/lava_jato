@@ -13,6 +13,8 @@ A etapa 1 ...
 Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se houver) de hardware e software. Use fotos, diagramas, tabelas etc. Adicionar pesqusisas realizadas. Relacionar as fotos, diagramas, etc no texto. Todas as referências devem citadas no texto. 
 
 ### 1.1 Projeto de cada bloco
+Breve diagrama de blocos do Circuito
+<img src="img/diagrama_de_blocos_placa.png" width="600">
 
 #### 1.1.1 Buck 12V
 O conversor Buck reduz uma tensão CC contínua para uma tensão CC menor através do chaveamento de alta frequência de um transistor e do armazenamento de energia em um indutor e um capacitor.
@@ -27,6 +29,10 @@ Usamos o CI TPS563201 para criar um ponto de 5V CC a partir de 12V de alimentaç
 <img src="img/diagrama_buck5v.1.png" width="600">
 <img src="img/diagrama_buck5v.2.png" width="600">
 
+#### 1.1.3 IHM
+O display é alimentado com 5V, mas o microcontrolador escolhido transmite os sinais de SDA e SCL em 3.3V, então existe a necessidade de conversão. O encoder é conectado ao microcontrolador para atuar como interface que permite ao usuário se comunicar com o microcontrolador, selecionando a opção dessejada ao girar e confirmando ao apertar o botão.
+
+<img src="img/diagrama_display.png" width="800">
 
 
 ### 1.2 Layout da PCB
