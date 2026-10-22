@@ -12,13 +12,23 @@ A etapa 1 ...
 
 Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se houver) de hardware e software. Use fotos, diagramas, tabelas etc. Adicionar pesqusisas realizadas. Relacionar as fotos, diagramas, etc no texto. Todas as referências devem citadas no texto. 
 
-### 1.1 Layout da PCB
+### 1.1 Projeto de cada bloco
+
+#### 1.1.1 Buck 12V
+O conversor Buck reduz uma tensão CC contínua para uma tensão CC menor através do chaveamento de alta frequência de um transistor e do armazenamento de energia em um indutor e um capacitor.
+Usamos o CI MP2363 para criar um ponto de 24V CC a partir da tomada (CA com 311V de pico) com base na aplicação típica mostrada no datasheet. 
+<img src="img/diagrama_buck12v.1.png" width="600">
+Em seguida usamos um circuito buck para converter de 24V para 12V.
+<img src="img/diagrama_buck12v.2.png" width="600">
+
+### 1.2 Layout da PCB
 
 #### Descrição
 <!-- Breve descrição do layout: número de camadas, dimensões, componentes principais, etc. -->
 
 #### Diagrama Esquemático
 <!-- Inserir imagem ou link para o esquemático -->
+<img src="img/diagrama_de_blocos_placa.png" width="600">
 
 #### Layout das Trilhas
 <!-- Inserir imagem do layout das trilhas (top/bottom) -->
@@ -31,7 +41,7 @@ Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se h
 
 ---
 
-### 1.2 Fabricação da PCB
+### 1.3 Fabricação da PCB
 
 #### Método de Fabricação
 <!-- Descrever o processo utilizado (fresagem, corroão química, fabricante externo, etc.) -->
@@ -47,9 +57,9 @@ Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se h
 
 ---
 
-### 1.3 Fabricação do Transformador
+### 1.4 Fabricação do Transformador
 
-#### 1.3.1 Especificações de Projeto 
+#### 1.4.1 Especificações de Projeto 
 
 As especificações de projeto são simplificadas na tabela abaixo: 
 
@@ -73,7 +83,7 @@ As especificações de projeto são simplificadas na tabela abaixo:
 > Obs.: Para mais detalhes sobre como as especificações foram obtidas, clique [aqui](/etapa_3/especificacao_fundamentacao.md). As especificações do núcleo foram obtidas empíricamente, conforme descrito no arquivo.
  
 
-#### 1.3.2 Dimensionamento da Bitola dos Cabos
+#### 1.4.2 Dimensionamento da Bitola dos Cabos
 
 Levando em consideração as especificações da tabela anterior, obteve-se os parâmetros de bitola para o primário e secundário, conforme a tabela abaixo.
 
@@ -91,7 +101,7 @@ Levando em consideração as especificações da tabela anterior, obteve-se os p
 > Obs.: Para mais detalhes sobre como os parâmetros foram obtidos, clique [aqui](/etapa_3/especificacao_fundamentacao.md).
 
 
-#### 1.3.4 Dimensionamento do número de Espiras
+#### 1.4.4 Dimensionamento do número de Espiras
 
 **Primário**: o número de espiras do primário é obtido pela lei de Faraday para uma onda quadrada:
 
@@ -121,7 +131,7 @@ $$
 
 O valor final deve ser **arredondado para cima**.
 
-#### 1.3.5 Verificação da Área de Cobre
+#### 1.4.5 Verificação da Área de Cobre
 
 Antes de enrolar, é necessário confirmar que todo o cobre cabe fisicamente na janela do carretel. Calcula-se a **Área de Cobre Nua (BCA)** de cada enrolamento:
 
@@ -158,7 +168,7 @@ Os $60$–$65\%$ restantes são destinados a isolamento do esmalte, fator de emp
 
 ---
 
-### 1.4 Montagem do Protótipo
+### 1.5 Montagem do Protótipo
 
 #### Diagrama de Blocos do Sistema
 <!-- Inserir diagrama: fonte + transformador + PCB + MPU + recipiente + piezo -->
