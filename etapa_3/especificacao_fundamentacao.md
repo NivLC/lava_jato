@@ -11,14 +11,16 @@ O que temos:
 - Volume do recipiente: $1,3L$  
 - Faixa de potência: $10,4 \,a \,19,5W$  
 
-Com o intuito de trabalharmos com folga e ter a oportunidade de testar os limites da limpadora, optou-se por superdimensionar a potência($30W$), deixando para controlar o limite desejado via software:  
+Com o intuito de trabalharmos com folga e ter a oportunidade de testar os limites da limpadora, optou-se por superdimensionar a potência($25W$), deixando para controlar o limite desejado via software: 
+> Obs: A resistência de ressônancia do pizoelétrico mudou para $324 \Omega$ com a bacia acoplada. 
+
 - Primário:  
   - $V_{pri} = 24V$  
   - $I_{pri}=I= \frac{P}{V} = \frac{30}{24} = 1,25A$  
 
 - Secundário:
-  - $V_{sec} =V= \sqrt{PR} \approx 24,391V = \sqrt{30 \cdot 19,8301} \approx 24,391V$  
-  - $I_{sec} =I= \frac{V}{R} \approx 1,230A$  
+  - $V_{sec} =V= \sqrt{PR} = \sqrt{25 \cdot 324} = 90V$  
+  - $I_{sec} =I= \frac{V}{R} = 5/18 \approx 277,8mA$  
 
 Parâmetros de segurança:
 
@@ -75,7 +77,7 @@ Onde:
 - $l_e$ = comprimento efetivo do caminho magnético;
 - $L$ = indutância característica da bobina.
 
-$A_L$ pode ser inferido através da indutância de magnetização, que é obtida através de uma configuração tanque LC, conforme as figuras abaixo, ou ainda, através de uma ponte LCR.  <br>
+$A_L$ pode ser inferido através da indutância de magnetização, que é obtida de duas formas, por uma configuração tanque LC, conforme as figuras abaixo, ou ainda, através de uma ponte LCR.  <br>
 
 <div align=center>
 <h5>Figura 1 - Caracterização do núcleo</h5>
@@ -101,27 +103,31 @@ $$
 A_L = 0,4825\mu \,H/espiras^2
 $$
 
+Ainda, conhecendo o número de espiras, também é possível encontrar $A_L$ pela ponte LCR, conforme figura abaixo:
+
+<div align=center>
+<h5>Figura 3 - Medição de L através da ponte LCR</h5>
+<img src="img/ponte_lcr.jpg" width="600">
+</div> <br><br>
+
+> Obs: devido à variação de temperatura, L ficou variando, mas seu valor médio é usado na equação abaixo.
+$$
+A_L = \frac{103,5\mu \,H}{15^2} = 0,46\mu \,H/espiras^2
+$$
+
+
 #### Área da Seção Transversal Efetiva ($A_e$) e Área da Janela do Carretel ($A_w$)
 
-Através do diâmetro do cilindro central, conforme a figura 3:  
+Através do datasheet do transformador, obten-se $A_e$ e $A_w$, conforme a figura 3:  
 
 <div align=center>
 <h5>Figura 3 - Diâmetro do núcleo</h5>
-<img src="img/nucleo_d.jpeg" width="600">
+<img src="img/nucleo_dim.png" width="600">
 </div> <br><br>
 
-$$A_e \approx \frac{\pi D^2}{4} = \frac{\pi \cdot \left(11mm\right)^2}{4} = 95,033mm^2 $$
-
-
-$A_w$ é obtido pelo espaço entre braços vezes a altura interna do núcleo, conforme as figuras 3 anterior e 4 a seguir:
-
-<div align=center>
-<h5>Figura 4 - Diâmetro do núcleo</h5>
-<img src="img/nucleo_h.jpeg" width="400">
-</div> <br><br>
-
+$$A_e = 107mm^2 $$
 $$
-A_w = l \cdot h = 32 \cdot 9 = 288 mm^2
+A_w = l \cdot h = 27,2 \cdot 5,69 = 154,8 mm^2
 $$
 
 ## Dimensionamento da Bitola dos Cabos
@@ -136,18 +142,18 @@ $$ D = 2 \sqrt{\frac{I}{J\pi}} $$
 $ D_{pri} = 2 \sqrt{\frac{1,25}{2\pi}} \approx 0,8921\text{mm}$  
 $ D_{sec} = 2 \sqrt{\frac{1,230}{2\pi}} \approx 0.8849 \, \text{mm}$  
 
-Considerando a profundidade pelicular($\delta$), pode-se calcular o número de cabos bifilares $N$:  
+Considerando a profundidade pelicular($\delta$), e o número de cabos bifilares $N$, pode-se estimar a bitola:  
 
 $$N=\frac{A_{teórica}}{A_{cabo\,elementear}}$$
-$$N=\frac{4\pi D_{teórica}^2}{4\pi D_{cabo\,elementear}^2}=\frac{D_{teórica}^2}{D_{cabo\,elementear}^2}$$
-$$D_{cabo\,elementear} \leq 2\delta$$
+$$N=\frac{4\pi D_{teórica}^2}{4\pi D_{cabo\,elementear}^2}=\frac{D_{teórica}^2}{D_{cabo\,elementear}^2},\,\, D_{cabo\,elementear} \leq 2\delta$$
+$$$$
 
-*Bitola elementar($D_{teórica}\geq D_{teórica}\, \text{mínima}$):*  
+*Bitola elementar:*  
 
 $$D_{cabo\,elementear}=\frac{D_{teórica}}{\sqrt{N}}$$
 
 
-Para $N=3\,\text{e}\,\delta \approx 0,16mm$:
+Para $N=3\,\text{e}\,\delta \approx 0,2063mm$:
 
 $D_{pri\,elementar}=\frac{0,8921}{\sqrt{3}} \approx 0,5150mm$
 

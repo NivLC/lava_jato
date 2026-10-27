@@ -75,7 +75,7 @@ O display é alimentado com 5V, mas o microcontrolador escolhido transmite os si
 
 #### 1.4.1 Especificações de Projeto 
 
-As especificações de projeto são simplificadas na tabela abaixo: 
+As especificações de projeto são mostradas na tabela abaixo: 
 
 <br>
 
