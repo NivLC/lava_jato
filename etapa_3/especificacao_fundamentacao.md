@@ -19,8 +19,8 @@ Com o intuito de trabalharmos com folga e ter a oportunidade de testar os limite
   - $I_{pri}=I= \frac{P}{V} = \frac{30}{24} = 1,25A$  
 
 - Secundário:
-  - $V_{sec} =V= \sqrt{PR} = \sqrt{25 \cdot 324} = 90V$  
-  - $I_{sec} =I= \frac{V}{R} = 5/18 \approx 277,8mA$  
+  - $V_{secRMS} =V= \sqrt{PR} = \sqrt{25 \cdot 324} = 90V$  
+  - $I_{secRMS} =I= \frac{V}{R} = 5/18 \approx 277,8mA$  
 
 Parâmetros de segurança:
 
