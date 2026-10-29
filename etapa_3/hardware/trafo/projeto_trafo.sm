@@ -4,7 +4,7 @@
   <settings ppi="96">
     <identity>
       <id>3acba5de-0fb5-42d3-be17-1340bf5e7f23</id>
-      <revision>124</revision>
+      <revision>126</revision>
     </identity>
     <calculation>
       <precision>4</precision>
@@ -38,10 +38,10 @@
         </content>
       </text>
     </region>
-    <region left="387" top="0" width="17" height="264" color="#000000" bgColor="#ff8080" fontSize="10">
+    <region left="387" top="0" width="17" height="328" color="#000000" bgColor="#ff8080" fontSize="10">
       <text lang="cpp" fontFamily="Arial" fontSize="10">
         <content>
-          <p style="background-color: #ff8080;">|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|</p>
+          <p style="background-color: #ff8080;">|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|</p>
         </content>
       </text>
     </region>
@@ -234,7 +234,7 @@
     <region left="162" top="162" width="221" height="33" color="#000000" fontSize="10">
       <math>
         <input>
-          <e type="operand">V.pPK</e>
+          <e type="operand">V.sPK</e>
           <e type="operand">V.sRMS</e>
           <e type="operand">2</e>
           <e type="function" args="1">sqrt</e>
@@ -264,6 +264,13 @@
         </result>
       </math>
     </region>
+    <region left="9" top="225" width="129" height="24" color="#000000" bgColor="#ffff80" fontSize="10">
+      <text lang="cpp" fontFamily="Arial" fontSize="10">
+        <content>
+          <p style="background-color: #ffff80;">Relação de espiras:</p>
+        </content>
+      </text>
+    </region>
     <region left="162" top="225" width="205" height="33" color="#000000" fontSize="10">
       <math>
         <input>
@@ -281,35 +288,49 @@
         </result>
       </math>
     </region>
-    <region left="0" top="261" width="774" height="24" color="#000000" bgColor="#ff8080" fontSize="10">
+    <region left="9" top="252" width="137" height="57" color="#000000" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">a</e>
+          <e type="operand">V.p</e>
+          <e type="operand">V.sPK</e>
+          <e type="operator" args="2">/</e>
+          <e type="operator" args="2">:</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">0.1721</e>
+        </result>
+      </math>
+    </region>
+    <region left="0" top="324" width="774" height="24" color="#000000" bgColor="#ff8080" fontSize="10">
       <text lang="cpp" width="774" fontFamily="Arial" fontSize="10">
         <content>
           <p style="background-color: #ff8080;">----------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
         </content>
       </text>
     </region>
-    <region left="9" top="288" width="198" height="24" color="#000000" bgColor="#ffff80" fontSize="10">
+    <region left="9" top="351" width="198" height="24" color="#000000" bgColor="#ffff80" fontSize="10">
       <text lang="cpp" fontFamily="Arial" fontSize="10">
         <content>
           <p style="background-color: #ffff80;">Critérios físicos e de segurança</p>
         </content>
       </text>
     </region>
-    <region left="279" top="288" width="21" height="472" color="#000000" bgColor="#ff8080" fontSize="10" isBreakable="false">
+    <region left="279" top="351" width="21" height="472" color="#000000" bgColor="#ff8080" fontSize="10" isBreakable="false">
       <text lang="cpp" fontFamily="Arial" fontSize="10">
         <content>
           <p style="background-color: #ff8080;">|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />|<br />| <br />|<br />|<br />|<br />|<br />|<br />|<br />| <br />|<br />|<br />|<br />|<br />|<br />|</p>
         </content>
       </text>
     </region>
-    <region left="324" top="288" width="369" height="24" color="#000000" bgColor="#ffff80" fontSize="10">
+    <region left="324" top="351" width="369" height="24" color="#000000" bgColor="#ffff80" fontSize="10">
       <text lang="cpp" fontFamily="Arial" fontSize="10">
         <content>
           <p style="background-color: #ffff80;">Tabela de projeto: Dado N espiras, Lmag, calcula paramêtros</p>
         </content>
       </text>
     </region>
-    <region left="468" top="324" width="159" height="41" border="true" color="#000000" fontSize="10">
+    <region left="468" top="387" width="159" height="41" border="true" color="#000000" fontSize="10">
       <math>
         <input>
           <e type="operand">L.mag</e>
@@ -325,7 +346,7 @@
         </input>
       </math>
     </region>
-    <region left="630" top="324" width="124" height="41" border="true" color="#000000" fontSize="10">
+    <region left="630" top="387" width="124" height="41" border="true" color="#000000" fontSize="10">
       <math>
         <input>
           <e type="operand">A.L</e>
@@ -339,7 +360,7 @@
         </input>
       </math>
     </region>
-    <region left="9" top="333" width="105" height="44" border="true" color="#000000" fontSize="10">
+    <region left="9" top="396" width="105" height="44" border="true" color="#000000" fontSize="10">
       <math>
         <input>
           <e type="operand">J</e>
@@ -356,7 +377,7 @@
         </input>
       </math>
     </region>
-    <region left="117" top="333" width="150" height="46" color="#000000" fontSize="10">
+    <region left="117" top="396" width="150" height="46" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">δ</e>
@@ -374,7 +395,7 @@
         </result>
       </math>
     </region>
-    <region left="324" top="333" width="141" height="32" border="true" color="#000000" fontSize="10">
+    <region left="324" top="396" width="141" height="32" border="true" color="#000000" fontSize="10">
       <math>
         <input>
           <e type="operand">N.espiras</e>
@@ -385,7 +406,7 @@
         </input>
       </math>
     </region>
-    <region left="351" top="369" width="257" height="308" color="#000000" fontSize="10">
+    <region left="324" top="432" width="257" height="334" color="#000000" fontSize="10">
       <math>
         <input>
           <e type="operand">N</e>
@@ -462,12 +483,20 @@
           <e type="operand">1</e>
           <e type="operator" args="2">-</e>
           <e type="function" args="2">el</e>
+          <e type="operand">1</e>
+          <e type="operand">2</e>
+          <e type="operator" args="2">/</e>
+          <e type="operand">V.sPK</e>
+          <e type="operand">V.p</e>
+          <e type="operator" args="2">/</e>
+          <e type="operator" args="2">*</e>
           <e type="operand">N.pri</e>
           <e type="operand">N</e>
           <e type="operand">1</e>
           <e type="operator" args="2">-</e>
           <e type="function" args="2">el</e>
-          <e type="operand">N.s</e>
+          <e type="operand">D</e>
+          <e type="operator" args="2">/</e>
           <e type="operator" args="2">*</e>
           <e type="operator" args="2">:</e>
           <e type="operand">5</e>
@@ -477,7 +506,16 @@
         </input>
       </math>
     </region>
-    <region left="9" top="378" width="170" height="32" color="#000000" fontSize="10">
+    <region left="639" top="432" width="62" height="26" border="true" color="#000000" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">D</e>
+          <e type="operand">0.5</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region left="9" top="441" width="170" height="32" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">D.max</e>
@@ -494,14 +532,14 @@
         </result>
       </math>
     </region>
-    <region left="9" top="441" width="54" height="24" color="#000000" bgColor="#ffff80" fontSize="10">
+    <region left="9" top="504" width="54" height="24" color="#000000" bgColor="#ffff80" fontSize="10">
       <text lang="cpp" fontFamily="Arial" fontSize="10">
         <content>
           <p style="background-color: #ffff80;">Bitolas</p>
         </content>
       </text>
     </region>
-    <region left="9" top="468" width="159" height="41" border="true" color="#000000" fontSize="10">
+    <region left="9" top="531" width="159" height="41" border="true" color="#000000" fontSize="10">
       <math>
         <input>
           <e type="operand">D.fio</e>
@@ -517,14 +555,14 @@
         </input>
       </math>
     </region>
-    <region left="180" top="477" width="63" height="24" border="true" color="#000000" fontSize="10">
+    <region left="180" top="540" width="63" height="24" border="true" color="#000000" fontSize="10">
       <text lang="cpp" fontFamily="Arial" fontSize="10">
         <content>
           <p>AWG 26</p>
         </content>
       </text>
     </region>
-    <region left="9" top="513" width="225" height="108" color="#000000" fontSize="10">
+    <region left="9" top="576" width="225" height="108" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">fios.pri</e>
@@ -548,7 +586,7 @@
         </result>
       </math>
     </region>
-    <region left="9" top="621" width="225" height="108" color="#000000" fontSize="10">
+    <region left="9" top="684" width="225" height="108" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">fios.sec</e>
@@ -572,14 +610,14 @@
         </result>
       </math>
     </region>
-    <region left="0" top="738" width="282" height="24" color="#000000" bgColor="#ff8080" fontSize="10">
+    <region left="0" top="801" width="282" height="24" color="#000000" bgColor="#ff8080" fontSize="10">
       <text lang="cpp" width="282" fontFamily="Arial" fontSize="10">
         <content>
           <p style="background-color: #ff8080;">----------------------------------------------------------</p>
         </content>
       </text>
     </region>
-    <region left="45" top="783" width="126" height="44" color="#000000" bgColor="#ffff80" fontSize="24">
+    <region left="45" top="846" width="126" height="44" color="#000000" bgColor="#ffff80" fontSize="24">
       <text lang="cpp" fontFamily="Arial" fontSize="10">
         <content>
           <p>
@@ -589,7 +627,7 @@
         </content>
       </text>
     </region>
-    <region left="18" top="846" width="128" height="294" color="#000000" fontSize="10">
+    <region left="18" top="909" width="128" height="294" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">ΔB.col</e>
@@ -616,7 +654,7 @@
         </result>
       </math>
     </region>
-    <region left="162" top="846" width="141" height="294" color="#000000" fontSize="10">
+    <region left="162" top="909" width="141" height="294" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">L.magcol</e>
@@ -643,7 +681,7 @@
         </result>
       </math>
     </region>
-    <region left="324" top="846" width="175" height="427" color="#000000" fontSize="10">
+    <region left="324" top="909" width="175" height="427" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">ΔI.mag</e>
@@ -739,7 +777,7 @@
         </result>
       </math>
     </region>
-    <region left="513" top="846" width="88" height="294" color="#000000" fontSize="10">
+    <region left="513" top="909" width="88" height="294" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">N.pri</e>
@@ -766,27 +804,27 @@
         </result>
       </math>
     </region>
-    <region left="612" top="846" width="112" height="294" color="#000000" fontSize="10">
+    <region left="612" top="909" width="128" height="294" color="#000000" fontSize="10">
       <math ignoreUnits="true">
         <input>
           <e type="operand">N.sec</e>
         </input>
         <result action="numeric">
-          <e type="operand">9.32</e>
-          <e type="operand">13.98</e>
-          <e type="operand">18.64</e>
-          <e type="operand">23.3</e>
-          <e type="operand">27.96</e>
-          <e type="operand">32.62</e>
-          <e type="operand">37.28</e>
-          <e type="operand">41.94</e>
-          <e type="operand">46.6</e>
-          <e type="operand">51.26</e>
-          <e type="operand">55.92</e>
-          <e type="operand">60.58</e>
-          <e type="operand">65.24</e>
-          <e type="operand">69.9</e>
-          <e type="operand">74.56</e>
+          <e type="operand">11.619</e>
+          <e type="operand">17.4284</e>
+          <e type="operand">23.2379</e>
+          <e type="operand">29.0474</e>
+          <e type="operand">34.8569</e>
+          <e type="operand">40.6663</e>
+          <e type="operand">46.4758</e>
+          <e type="operand">52.2853</e>
+          <e type="operand">58.0948</e>
+          <e type="operand">63.9042</e>
+          <e type="operand">69.7137</e>
+          <e type="operand">75.5232</e>
+          <e type="operand">81.3327</e>
+          <e type="operand">87.1421</e>
+          <e type="operand">92.9516</e>
           <e type="operand">15</e>
           <e type="operand">1</e>
           <e type="function" args="17">mat</e>
