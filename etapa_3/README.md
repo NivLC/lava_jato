@@ -329,6 +329,9 @@ Alguns testes foram conduzidos com o papel alumínio para verificar a homogeneid
 
 ### Teste de Limpeza
 
+Definição de material para teste de limpeza
+Usamos alguns itens simples para testes: Papel alumínio, caneta em plástico e um brinco sujo. Para a eficiência total do projeto precisamos usar produtos de limpeza adequados. Existem linhas de produtos de limpeza especificamente para limpadores ultrassônicos. Pesquisamos alguns produtos e concluímos que os produtos de limpeza são fundamentais para o melhor aproveitamento do limpador ultrassônico, pois só com água não é possível ter muitos resultados.
+
 Os testes preliminares foram realizados com uma frequência fixa. Neste modo, era perceptível que ondas estacionárias estavam se formando pelo padrão no fundo da bacia e pela presença de minibolhas que permaneciam presas na mesma área, como mostrado respectivamente nas Figuras 20 e 21 (centro da imagem).
 
 <div align=center>
