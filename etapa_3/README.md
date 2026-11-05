@@ -12,7 +12,7 @@ Na etapa 3, objetiva-se:
 
 ## 1. Projeto dos Blocos
 
-A Figura 1 representa um breve diagrama de blocos do projeto. A cor vermelha representa conexões de potência, enquanto a cor preta representa conexões analógicas. O esquemático completo pode ser acessado em [hardware/pcb](./hardware/pcb/). 
+A Figura 1 representa um breve diagrama de blocos do projeto. A cor vermelha representa conexões de potência, enquanto a cor preta representa conexões analógicas/digitais. O esquemático completo pode ser acessado em [hardware/pcb](./hardware/pcb/). 
 
 A explicação detalhada dos blocos encontra-se em [hardware](./hardware/README.md).
 
