@@ -142,6 +142,7 @@ As especificações de projeto são mostradas na tabela abaixo:
 | | Corrente do Primário | $I_{PKpri}$ | 1,25 | A | |
 | **Secundário** | Tensão do Secundário (RMS) | $V_{sec}$ | 98,5901 | V | |
 | | Corrente do Secundário (RMS) | $I_{sec}$ | 0,3043 | A | |
+| **Relação de espiras** | a | $a$ | 4.1079 |  | Considerando valores RMS|
 | **Segurança** | Densidade de Corrente Segura | $J$ | 3 | A/mm² | |
 | | Profundidade Pelicular | $\delta$ | 0,2372 | mm |
 | **Núcleo** | Tipo de Núcleo | - | ETD | - | Formato E duplo, cilindro central |
@@ -235,7 +236,11 @@ Para verificação dos cálculos, simula-se um trafo em uma configuração parec
   </tr>
 </table>
 
+A simulação levou em conta o modelo spice dos MOSFETS e do driver de corrente. Os arquivos de simulação podem ser acessados na pasta [etapa_3/hardware/trafo](/etapa_3/hardware/trafo/simulacao/). Além disso, a ferramenta de cálculo usada foi o Smath, e o arquivo de projeto pode ser encontrado na mesma pasta.
 
+#### 1.4.7 Construção
+
+A construção se deu, basicamente, com 4 fios trançados para o primário, e 1 no secundário, sendo o secundário enrolado sobre o primário, da forma mais homogênea possível.
 
 ---
 
@@ -312,7 +317,7 @@ Um mosfet apresenta um aumento de temperatura maior e mais rápido que outro, o 
 
 <div align=center>
 <h5>Figura 19: Simetria do núcleo</h5>
-<img src="img/simetria.png" width="400">
+<img src="img/simetria.png" width="600">
 </div> <br>
 
 Pra mitigar isso, diminuímos o duty cycle progressivamente até chegar em 25%, onde a temperatura estabilizou bem em 50ºC com operação contínua, entregando 20W (20V/1A).
