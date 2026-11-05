@@ -10,74 +10,15 @@ Na etapa 3, objetiva-se:
     - Teste de limpeza.
 
 
-## 1. Montagem do Protótipo
+## 1. Projeto dos Blocos
 
-### 1.1 Projeto dos blocos
+A Figura 1 representa um breve diagrama de blocos do projeto. A cor vermelha representa conexões de potência, enquanto a cor preta representa conexões analógicas. O esquemático completo pode ser acessado em [hardware/pcb](./hardware/pcb/). 
 
-A Figura 1 representa um breve diagrama de blocos do projeto. A cor vermelha representa conexões de potência, enquanto a cor preta representa conexões analógicas.
+A explicação detalhada dos blocos encontra-se em [hardware](./hardware/README.md).
 
 <div align=center>
 <h5>Figura 1: Breve diagrama de blocos</h5>
 <img src="img/diagrama_de_blocos_placa.png" width="600">
-</div> <br>
-
-
-#### 1.1.1 Buck 12V
-
-O conversor Buck reduz uma tensão CC contínua para uma tensão CC menor através do chaveamento de alta frequência de um transistor e do armazenamento de energia em um indutor e um capacitor.
-Usamos o CI MP2363 (Figura 2) para criar um ponto de 12V CC a partir de 24V de alimentação de uma fonte, com base na aplicação típica mostrada no [datasheet](https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2363/?srsltid=AYCX9vLj0Yd7um0Egu9H57R6vaFL04rclYFHzbOqzPCZu6mk2dfonHHz).
-
-<div align=center>
-<h5>Figura 2: Buck 12V - MP2363</h5>
-<img src="img/diagrama_buck12v.1.png" width="500">
-</div> <br>
-
-A partir da tensão de saída desejada e do valor de feedback conforme o datasheet, calculamos os resistores para a conversão. A Figura 3 demonstra os cálculos retirados do datasheet que validam os valores dos resistores escolhidos.
-
-<div align=center>
-<h5>Figura 3: Buck 12V - Feedback</h5>
-<img src="img/diagrama_buck12v.2.png" width="500">
-</div> <br>
-
-
-
-#### 1.1.2 Buck 5V 
-
-Similarmente, usamos o CI TPS563201 para criar um ponto de 5V CC a partir de 12V de alimentação do bloco anterior com base na aplicação típica mostrada no [datasheet](https://www.ti.com/lit/ds/symlink/tps563201.pdf?ts=1792653573582&ref_url=https%253A%252F%252Fwww.google.com%252F).
-
-<div align=center>
-<h5>Figura 4: Buck 5V - TPS563201</h5>
-<img src="img/diagrama_buck5v.1.png" width="500">
-</div> <br>
-
-<div align=center>
-<h5>Figura 5: Buck 5V - Feedback</h5>
-<img src="img/diagrama_buck5v.2.png" width="500">
-</div> <br>
-
-
-#### 1.1.3 IHM
-
-Como documentado na [etapa 2](../etapa_2/hardware/README.md), o display é alimentado com 5V do bloco anterior. Um conversor de nível lógico realiza a conversão para 3.3V para comunicação com o microcontrolador. Um encoder é conectado ao microcontrolador para atuar como interface que permite ao usuário se comunicar com o microcontrolador, selecionando a opção dessejada ao girar e confirmando ao apertar o botão.
-
-
-<div align=center>
-<h5>Figura 6: Esquemático da placa do painel</h5>
-<img src="img/diagrama_display.png" width="800">
-</div> <br>
-
-#### 1.1.4 Push-Pull
-
-A Figura 7 mostra o transformador push-pull e a Figura 8 traz os cálculos preliminares básicos para visualizarmos valores esperados e limites de operação.
-
-<div align=center>
-<h5>Figura 7: Push-Pull</h5>
-<img src="img/pushpull.png" width="700">
-</div> <br>
-
-<div align=center>
-<h5>Figura 8: Cálculos preliminares</h5>
-<img src="img/rascunho.png" width="700">
 </div> <br>
 
 
@@ -93,16 +34,16 @@ O layout da placa foi feita em duas layers com pĺano de GND, com componentes SM
 A maior parte dos componentes está situado na front layer.
 A placa foi roteada por setores, seguindo o esquemático. As trilhas na entrada e no primário do transformador são mais "gordas" pois há mais corrente, diferente das trilhas do setor do microcontrolador que são finas pois há baixa corrente. Tentamos realizar o roteamento de forma que haja um plano de GND contínuo para garantir um bom caminho de retorno da corrente.
 
-A Figura 9 mostra o layout da front layer enquanto a Figura 10 mostra a visão 3D da placa com marcações dos setores para melhor entendimento.
+A Figura 2 mostra o layout da front layer enquanto a Figura 3 mostra a visão 3D da placa com marcações dos setores para melhor entendimento.
 
 <table align="center">
   <tr>
     <td align="center">
-    <h5>Figura 9: Front layer</h5>
+    <h5>Figura 2: Front layer</h5>
       <img width="600" src="img/pcb_front.png" />
     </td>
     <td align="center">
-    <h5>Figura 10: Back layer soldada</h5>
+    <h5>Figura 3: Back layer soldada</h5>
       <img width="600" src="img/pcb_3d_3.png" />
     </td>
   </tr>
@@ -113,16 +54,16 @@ A Figura 9 mostra o layout da front layer enquanto a Figura 10 mostra a visão 3
 
 Na back layer estão os componentes THT como conectores e transformador e alguns componentes SMD como mosfets.
 
-A Figura 11 mostra o layout da back layer enquanto a Figura 12 mostra a visão 3D da placa com marcações dos setores para melhor entendimento.
+A Figura 4 mostra o layout da back layer enquanto a Figura 5 mostra a visão 3D da placa com marcações dos setores para melhor entendimento.
 
 <table align="center">
   <tr>
     <td align="center">
-    <h5>Figura 11: Back layer</h5>
+    <h5>Figura 4: Back layer</h5>
       <img width="600" src="img/pcb_back.png" />
     </td>
     <td align="center">
-    <h5>Figura 12: Back layer 3D</h5>
+    <h5>Figura 5: Back layer 3D</h5>
       <img width="600" src="img/pcb_3d_4.png" />
     </td>
   </tr>
@@ -130,10 +71,10 @@ A Figura 11 mostra o layout da back layer enquanto a Figura 12 mostra a visão 3
 
 #### Layers Sobrepostas
 
-A Figura 13 mostra ambas as layers sobrepostas para visualização completa.
+A Figura 6 mostra ambas as layers sobrepostas para visualização completa.
 
 <div align=center>
-<h5>Figura 13: Layers sobrepostas</h5>
+<h5>Figura 6: Layers sobrepostas</h5>
 <img src="img/pcb_all.png" width="600">
 </div> <br>
 
@@ -151,11 +92,11 @@ Fo utilizado o [UVTools](https://github.com/sn4k3/UVTools) para converter os arq
 <table align="center">
   <tr>
     <td align="center">
-    <h5>Figura 14: Front layer</h5>
+    <h5>Figura 7: Front layer</h5>
       <img width="500" src="img/pcb1.png" />
     </td>
     <td align="center">
-    <h5>Figura 15: Front layer soldada</h5>
+    <h5>Figura 8: Front layer soldada</h5>
       <img width="500" src="img/pcb_front_solder.jpeg" />
     </td>
   </tr>
@@ -165,20 +106,20 @@ Fo utilizado o [UVTools](https://github.com/sn4k3/UVTools) para converter os arq
 <table align="center">
   <tr>
     <td align="center">
-    <h5>Figura 16: Back layer</h5>
+    <h5>Figura 9: Back layer</h5>
       <img width="500" src="img/pcb2.png" />
     </td>
     <td align="center">
-    <h5>Figura 17: Back layer soldada</h5>
+    <h5>Figura 10: Back layer soldada</h5>
       <img width="500" src="img/pcb_back_solder.jpeg" />
     </td>
   </tr>
 </table>
 
-Posteriormente o transformador foi fabricado e soldado na placa, como mostrado na Figura 18. A fabricação do transformador será desenvolvida no tópico 1.4.
+Posteriormente o transformador foi fabricado e soldado na placa, como mostrado na Figura 11. Os cálculos do transformador serão desenvolvidos no tópico 1.4.
 
 <div align=center>
-<h5>Figura 18: Placa com transformador</h5>
+<h5>Figura 11: Placa com transformador</h5>
 <img src="img/pcb_trafo.jpeg" width="500">
 </div> <br>
 
@@ -290,29 +231,29 @@ Os $60$–$65\%$ restantes são destinados a isolamento do esmalte, fator de emp
 
 ### Bucks e LDO
 
-Primeiro verificamos se a conversão de energia estava estável. Podemos ver que as tensões estão corretas e estáveis o suficiente pela medida "Avg" na parte inferior das Figuras 19, 20 e 21.
+Primeiro verificamos se a conversão de energia estava estável. Podemos ver que as tensões estão corretas e estáveis o suficiente pela medida "Avg" na parte inferior das Figuras 12, 13, e 14.
 
-A Figura 22 mostra o setup de teste com uma fonte de bancada gerando a tensão de entrada de 24V.
+A Figura 15 mostra o setup de teste com uma fonte de bancada gerando a tensão de entrada de 24V.
 
 <table align="center">
   <tr>
     <td align="center">
-    <h5>Figura 19: Buck 12V</h5>
+    <h5>Figura 12: Buck 12V</h5>
       <img width="400" src="img/buck5v.png" />
     </td>
     <td align="center">
-    <h5>Figura 20: Buck 5V</h5>
+    <h5>Figura 13: Buck 5V</h5>
       <img width="400" src="img/buck12v.png" />
     </td>
     <td align="center">
-    <h5>Figura 21: LDO</h5>
+    <h5>Figura 14: LDO</h5>
       <img width="400" src="img/ldo.png" />
     </td>
   </tr>
 </table>
 
 <div align=center>
-<h5>Figura 22: Tensão de entrada</h5>
+<h5>Figura 15: Tensão de entrada</h5>
 <img src="img/test_setup.jpeg" width="600">
 </div> <br>
 
@@ -324,16 +265,16 @@ O PWM foi configurado conforme na CubeMX da seguinte forma:
 - CH1 polarity: HIGH
 - CH2 polarity: LOW
 
-A representação gráfica da configuração e o resultado estão apresentados respectivamente nas Figuras 23 e 24.
+A representação gráfica da configuração e o resultado estão apresentados respectivamente nas Figuras 16 e 17.
 
 <table align="center">
   <tr>
     <td align="center">
-    <h5>Figura 23: PWM</h5>
+    <h5>Figura 16: PWM</h5>
       <img width="500" src="img/pwm.png" />
     </td>
     <td align="center">
-    <h5>Figura 24: Entrada do driver</h5>
+    <h5>Figura 17: Entrada do driver</h5>
       <img width="600" src="img/driver_in.png" />
     </td>
   </tr>
@@ -343,10 +284,10 @@ A representação gráfica da configuração e o resultado estão apresentados r
 
 Uma tensão de 12V foi colocada no primário para verificar a tensão de saída. Com 24V, o esperado é que a saída estivesse em torno de 316V pico-a-pico.
 
-Este valor estava sendo alcançado já com 12V conforme mostra a Figura 25, indicando uma amplificação maior do que a esperada, portanto será necessário reduzir o número de voltas no secundário.
+Este valor estava sendo alcançado já com 12V conforme mostra a Figura 18, indicando uma amplificação maior do que a esperada, portanto será necessário reduzir o número de voltas no secundário.
 
 <div align=center>
-<h5>Figura 25: Tensão de saida</h5>
+<h5>Figura 18: Tensão de saida</h5>
 <img src="img/tensao_saida.gif" width="300">
 </div> <br>
 
@@ -355,10 +296,10 @@ Este valor estava sendo alcançado já com 12V conforme mostra a Figura 25, indi
 O primeiro teste foi feito com uma média de 16W (16V/1A). O duty cycle estava configurado em 45%, mas os mosfets ultrapassaram 50ºC em aproximadamente 2 minutos, indicando que havia mais corrente reativa do que o esperado no primário.
 
 
-Um mosfet apresenta um aumento de temperatura maior e mais rápido que outro, o que indica um possível desbalanço no núcleo do transformador. A Figura 26 mostra a tensão em ambas as bobinas do primário sobrepostas para verificar a simetria.
+Um mosfet apresenta um aumento de temperatura maior e mais rápido que outro, o que indica um possível desbalanço no núcleo do transformador. A Figura 19 mostra a tensão em ambas as bobinas do primário sobrepostas para verificar a simetria.
 
 <div align=center>
-<h5>Figura 26: Simetria do núcleo</h5>
+<h5>Figura 19: Simetria do núcleo</h5>
 <img src="img/simetria.png" width="400">
 </div> <br>
 
@@ -371,31 +312,31 @@ Alguns testes foram conduzidos com o papel alumínio para verificar a homogeneid
 
 ### Teste de Limpeza
 
-Os testes preliminares foram realizados com uma frequência fixa. Neste modo, era perceptível que ondas estacionárias estavam se formando pelo padrão no fundo da bacia e pela presença de minibolhas que permaneciam presas na mesma área, como mostrado respectivamente nas Figuras 27 e 28 (centro da imagem).
+Os testes preliminares foram realizados com uma frequência fixa. Neste modo, era perceptível que ondas estacionárias estavam se formando pelo padrão no fundo da bacia e pela presença de minibolhas que permaneciam presas na mesma área, como mostrado respectivamente nas Figuras 20 e 21 (centro da imagem).
 
 <div align=center>
-<h5>Figura 27: Ondas estacionárias</h5>
+<h5>Figura 20: Ondas estacionárias</h5>
 <img src="img/onda_estacionaria.png" width="500">
 </div> <br>
 
 <div align=center>
-<h5>Figura 28: Minibolha presa</h5>
+<h5>Figura 21: Minibolha presa</h5>
 <img src="img/bolha_parada.gif" width="300">
 </div> <br>
 
-Para dispersar essas bolhas estacionárias, foi realizado um sweep de frequência, o que se mostrou eficaz conforme mostrado na Figura 29, onde há uma bolha no centro da imagem que se junta com outra e segue para a superfície.
+Para dispersar essas bolhas estacionárias, foi realizado um sweep de frequência, o que se mostrou eficaz conforme mostrado na Figura 22, onde há uma bolha no centro da imagem que se junta com outra e segue para a superfície.
 
 O código para o teste pode ser acessado em [software](./software/main.c)
 
 <div align=center>
-<h5>Figura 29: Minibolha sendo dispersada</h5>
+<h5>Figura 22: Minibolha sendo dispersada</h5>
 <img src="img/bolha_indo_embora.gif" width="300">
 </div> <br>
 
-A Figura 30 mostra bolhas se formando ao redor do objeto solto no recipiente.
+A Figura 23 mostra bolhas se formando ao redor do objeto solto no recipiente.
 
 <div align=center>
-<h5>Figura 30: Bolhas na superfície do objeto</h5>
+<h5>Figura 23: Bolhas na superfície do objeto</h5>
 <img src="img/bolhas.gif" width="300">
 </div> <br>
 
