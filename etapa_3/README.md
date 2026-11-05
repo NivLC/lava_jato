@@ -1,73 +1,187 @@
 # Etapa 3
 
-**(MÍNIMO DE 600 E MÁXIMO DE 1000 PALAVRAS no total do arquivo md.)**
+Na etapa 3, objetiva-se:
+- Detalhar esquemático/layout da PCB;
+- Fabricar a PCB;
+- Montar o protótipo;
+- Realizar testes;
+    - Teste do papel alumínio;
+    - Teste de resistência mecânica e de temperatura;
+    - Teste de limpeza.
 
-A etapa 1 ...
-
-**(Adicionar aqui UM parágrafo com visão geral da etapa. Resumo dos itens da planilha.)**
-
-**(Não adicione código em nenhum arquivo md. )**
 
 ## 1. Montagem do Protótipo
 
-Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se houver) de hardware e software. Use fotos, diagramas, tabelas etc. Adicionar pesqusisas realizadas. Relacionar as fotos, diagramas, etc no texto. Todas as referências devem citadas no texto. 
+### 1.1 Projeto dos blocos
 
-### 1.1 Projeto de cada bloco
-Breve diagrama de blocos do Circuito
+A Figura 1 representa um breve diagrama de blocos do projeto. A cor vermelha representa conexões de potência, enquanto a cor preta representa conexões analógicas.
+
+<div align=center>
+<h5>Figura 1: Breve diagrama de blocos</h5>
 <img src="img/diagrama_de_blocos_placa.png" width="600">
+</div> <br>
+
 
 #### 1.1.1 Buck 12V
-O conversor Buck reduz uma tensão CC contínua para uma tensão CC menor através do chaveamento de alta frequência de um transistor e do armazenamento de energia em um indutor e um capacitor.
-Usamos o CI MP2363 para criar um ponto de 12V CC a partir de 24V de alimentação de uma fonte, com base na aplicação típica mostrada no [datasheet](https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2363/?srsltid=AYCX9vLj0Yd7um0Egu9H57R6vaFL04rclYFHzbOqzPCZu6mk2dfonHHz) trocamos os componentes para que a saída se adequasse a 12V para entrada de 24V. 
 
-<img src="img/diagrama_buck12v.1.png" width="600">
-Resumo do circuito:
-<img src="img/diagrama_buck12v.2.png" width="600">
+O conversor Buck reduz uma tensão CC contínua para uma tensão CC menor através do chaveamento de alta frequência de um transistor e do armazenamento de energia em um indutor e um capacitor.
+Usamos o CI MP2363 (Figura 2) para criar um ponto de 12V CC a partir de 24V de alimentação de uma fonte, com base na aplicação típica mostrada no [datasheet](https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2363/?srsltid=AYCX9vLj0Yd7um0Egu9H57R6vaFL04rclYFHzbOqzPCZu6mk2dfonHHz).
+
+<div align=center>
+<h5>Figura 2: Buck 12V - MP2363</h5>
+<img src="img/diagrama_buck12v.1.png" width="500">
+</div> <br>
+
+A partir da tensão de saída desejada e do valor de feedback conforme o datasheet, calculamos os resistores para a conversão. A Figura 3 demonstra os cálculos retirados do datasheet que validam os valores dos resistores escolhidos.
+
+<div align=center>
+<h5>Figura 3: Buck 12V - Feedback</h5>
+<img src="img/diagrama_buck12v.2.png" width="500">
+</div> <br>
+
+
 
 #### 1.1.2 Buck 5V 
-Usamos o CI TPS563201 para criar um ponto de 5V CC a partir de 12V de alimentação do bloco anterior que usa MP2363, com base na aplicação típica mostrada no [datasheet](https://www.ti.com/lit/ds/symlink/tps563201.pdf?ts=1792653573582&ref_url=https%253A%252F%252Fwww.google.com%252F) trocamos os componentes para que a saída se adequasse a 5V para entrada de 12V. 
-<img src="img/diagrama_buck5v.1.png" width="600">
-<img src="img/diagrama_buck5v.2.png" width="600">
+
+Similarmente, usamos o CI TPS563201 para criar um ponto de 5V CC a partir de 12V de alimentação do bloco anterior com base na aplicação típica mostrada no [datasheet](https://www.ti.com/lit/ds/symlink/tps563201.pdf?ts=1792653573582&ref_url=https%253A%252F%252Fwww.google.com%252F).
+
+<div align=center>
+<h5>Figura 4: Buck 5V - TPS563201</h5>
+<img src="img/diagrama_buck5v.1.png" width="500">
+</div> <br>
+
+<div align=center>
+<h5>Figura 5: Buck 5V - Feedback</h5>
+<img src="img/diagrama_buck5v.2.png" width="500">
+</div> <br>
+
 
 #### 1.1.3 IHM
-O display é alimentado com 5V, mas o microcontrolador escolhido transmite os sinais de SDA e SCL em 3.3V, então existe a necessidade de conversão. O encoder é conectado ao microcontrolador para atuar como interface que permite ao usuário se comunicar com o microcontrolador, selecionando a opção dessejada ao girar e confirmando ao apertar o botão.
 
+Como documentado na [etapa 2](../etapa_2/hardware/README.md), o display é alimentado com 5V do bloco anterior. Um conversor de nível lógico realiza a conversão para 3.3V para comunicação com o microcontrolador. Um encoder é conectado ao microcontrolador para atuar como interface que permite ao usuário se comunicar com o microcontrolador, selecionando a opção dessejada ao girar e confirmando ao apertar o botão.
+
+
+<div align=center>
+<h5>Figura 6: Esquemático da placa do painel</h5>
 <img src="img/diagrama_display.png" width="800">
+</div> <br>
+
+#### 1.1.4 Push-Pull
+
+A Figura 7 mostra o transformador push-pull e a Figura 8 traz os cálculos preliminares básicos para visualizarmos valores esperados e limites de operação.
+
+<div align=center>
+<h5>Figura 7: Push-Pull</h5>
+<img src="img/pushpull.png" width="700">
+</div> <br>
+
+<div align=center>
+<h5>Figura 8: Cálculos preliminares</h5>
+<img src="img/rascunho.png" width="700">
+</div> <br>
 
 
 ### 1.2 Layout da PCB
 
 #### Descrição
-<!-- Breve descrição do layout: número de camadas, dimensões, componentes principais, etc. -->
 
-#### Diagrama Esquemático
-<!-- Inserir imagem ou link para o esquemático -->
-<img src="img/diagrama_de_blocos_placa.png" width="600">
+O layout da placa foi feita em duas layers com pĺano de GND, com componentes SMD e THT e com dimensões 85x70 mm. Os arquivos KiCad podem ser acessados em [hardware/pcb](./hardware/pcb).
 
-#### Layout das Trilhas
-<!-- Inserir imagem do layout das trilhas (top/bottom) -->
 
-#### Considerações de Projeto
-<!-- Justificar escolhas: espessura, separação de trilhas, plano de terra, etc. -->
+#### Front Layer
 
-#### Lista de Componentes (BOM)
-<!-- Inserir tabela com componentes, valores e encapsulamentos -->
+A maior parte dos componentes está situado na front layer.
+A placa foi roteada por setores, seguindo o esquemático. As trilhas na entrada e no primário do transformador são mais "gordas" pois há mais corrente, diferente das trilhas do setor do microcontrolador que são finas pois há baixa corrente. Tentamos realizar o roteamento de forma que haja um plano de GND contínuo para garantir um bom caminho de retorno da corrente.
 
----
+A Figura 9 mostra o layout da front layer enquanto a Figura 10 mostra a visão 3D da placa com marcações dos setores para melhor entendimento.
+
+<table align="center">
+  <tr>
+    <td align="center">
+    <h5>Figura 9: Front layer</h5>
+      <img width="600" src="img/pcb_front.png" />
+    </td>
+    <td align="center">
+    <h5>Figura 10: Back layer soldada</h5>
+      <img width="600" src="img/pcb_3d_3.png" />
+    </td>
+  </tr>
+</table>
+
+
+#### Back Layer
+
+Na back layer estão os componentes THT como conectores e transformador e alguns componentes SMD como mosfets.
+
+A Figura 11 mostra o layout da back layer enquanto a Figura 12 mostra a visão 3D da placa com marcações dos setores para melhor entendimento.
+
+<table align="center">
+  <tr>
+    <td align="center">
+    <h5>Figura 11: Back layer</h5>
+      <img width="600" src="img/pcb_back.png" />
+    </td>
+    <td align="center">
+    <h5>Figura 12: Back layer 3D</h5>
+      <img width="600" src="img/pcb_3d_4.png" />
+    </td>
+  </tr>
+</table>
+
+#### Layers Sobrepostas
+
+A Figura 13 mostra ambas as layers sobrepostas para visualização completa.
+
+<div align=center>
+<h5>Figura 13: Layers sobrepostas</h5>
+<img src="img/pcb_all.png" width="600">
+</div> <br>
+
 
 ### 1.3 Fabricação da PCB
 
 #### Método de Fabricação
-<!-- Descrever o processo utilizado (fresagem, corroão química, fabricante externo, etc.) -->
 
-#### Parâmetros de Fabricação
-<!-- Inserir dados: espessura da placa, acabamento, máscara de solda, etc. -->
+A placa foi primeiro cortada e perfurada com uma CNC e a tranferência do padrão foi feita usando a técnica de litografia UV com uma impressora de resina. Depois, foi corroída com percloreto de ferro e finalizada com banho de prata. Os arquivos gerber podem ser acessados em [hardware/pcb](./hardware/pcb).
+
+Fo utilizado o [UVTools](https://github.com/sn4k3/UVTools) para converter os arquivos para impressoras 3D de resina
 
 #### Resultado
-<!-- Inserir fotos da PCB fabricada (antes e depois da solda) -->
 
-#### Problemas Encontrados
-<!-- Descrever eventuais defeitos ou dificuldades -->
+<table align="center">
+  <tr>
+    <td align="center">
+    <h5>Figura 14: Front layer</h5>
+      <img width="500" src="img/pcb1.png" />
+    </td>
+    <td align="center">
+    <h5>Figura 15: Front layer soldada</h5>
+      <img width="500" src="img/pcb_front_solder.jpeg" />
+    </td>
+  </tr>
+</table>
+
+
+<table align="center">
+  <tr>
+    <td align="center">
+    <h5>Figura 16: Back layer</h5>
+      <img width="500" src="img/pcb2.png" />
+    </td>
+    <td align="center">
+    <h5>Figura 17: Back layer soldada</h5>
+      <img width="500" src="img/pcb_back_solder.jpeg" />
+    </td>
+  </tr>
+</table>
+
+Posteriormente o transformador foi fabricado e soldado na placa, como mostrado na Figura 18. A fabricação do transformador será desenvolvida no tópico 1.4.
+
+<div align=center>
+<h5>Figura 18: Placa com transformador</h5>
+<img src="img/pcb_trafo.jpeg" width="500">
+</div> <br>
+
 
 ---
 
@@ -85,14 +199,14 @@ As especificações de projeto são mostradas na tabela abaixo:
 | | Potência de Trabalho (Projeto) | $P$ | 30 | W | Superdimensionado para folga |
 | **Primário** | Tensão do Primário | $V_{pri}$ | 24 | V | |
 | | Corrente do Primário | $I_{pri}$ | 1,25 | A | |
-| **Secundário** | Tensão do Secundário | $V_{sec}$ | 24,391 | V | |
-| | Corrente do Secundário | $I_{sec}$ | 1,230 | A | |
+| **Secundário** | Tensão do Secundário (RMS) | $V_{sec}$ | 122 | V | |
+| | Corrente do Secundário (RMS) | $I_{sec}$ | 0,24 | A | |
 | **Segurança** | Densidade de Corrente Segura | $J$ | 2 | A/mm² | |
-| | Profundidade Pelicular (Pior caso) | $\delta$ | 0,16 | mm | Para frequência de 170 kHz |
+| | Profundidade Pelicular (Pior caso) | $\delta$ | 0,47 | mm |
 | **Núcleo** | Tipo de Núcleo | - | ETD | - | Formato E duplo, cilindro central |
-| | Fator de Indutância | $A_L$ | 0,4825 | $\mu H/espiras^2$ | Média obtida experimentalmente |
+| | Fator de Indutância | $A_L$ | 1,83 | $\mu H/espiras^2$ | Média obtida experimentalmente |
 | | Área da Seção Transversal Efetiva | $A_e$ | 107 | mm² | Calculada com $D = 11$ mm |
-| | Área da Janela do Carretel | $A_w$ | 288 | mm² | Calculada com $32 \times 9$ mm |
+| | Área da Janela do Carretel | $A_w$ | 155 | mm² | Calculada com $27,2 \times 5,7$ mm |
 
 > Obs.: Para mais detalhes sobre como as especificações foram obtidas, clique [aqui](/etapa_3/especificacao_fundamentacao.md). As especificações do núcleo foram obtidas empíricamente, conforme descrito no arquivo.
  
@@ -104,7 +218,7 @@ Levando em consideração as especificações da tabela anterior, obteve-se os p
 | Parâmetro | Símbolo | Valor | Unidade | Observação / Equivalência |
 | :--- | :--- | :--- | :--- | :--- |
 | **Primário** | | | | |
-| Diâmetro teórico mínimo | $D_{pri}$ | 0,8921 | mm | Calculado para $I = 1,25$ A |
+| Diâmetro teórico máximo | $D_{pri}$ | 0,47 | mm |  |
 | Diâmetro elementar | $D_{pri\,elem}$ | 0,5150 | mm | Calculado para $N=3$ |
 | **Bitola comercial adotada** | - | **0,57** | **mm** | **Fio 23 AWG** |
 | **Secundário** | | | | |
@@ -170,78 +284,123 @@ $$
 
 Os $60$–$65\%$ restantes são destinados a isolamento do esmalte, fator de empacotamento, fita isolante, tubos termorretráteis e espaços vazios.
 
-#### Processo de Fabricação
-<!-- Descrever o processo: enrolamento, isolamento, montagem do núcleo -->
-
-#### Ensaio e Caracterização
-<!-- Inserir resultados de medições: indutância, relação de espiras, perdas -->
-
-#### Fotos
-<!-- Inserir imagens do transformador montado -->
-
----
-
-### 1.5 Montagem do Protótipo
-
-#### Diagrama de Blocos do Sistema
-<!-- Inserir diagrama: fonte + transformador + PCB + MPU + recipiente + piezo -->
-
-#### Fixação do Piezoelétrico
-<!-- Descrever método de fixação, material utilizado, posição -->
-
-#### Construção da Cestinha
-<!-- Descrever material, dimensões, método de fabricação, fotos -->
-
-#### Integração dos Módulos
-<!-- Descrever como os módulos foram conectados e acomodados -->
-
-#### Código para Testes Básicos
-<!-- Inserir trecho de código ou link para o repositório -->
-
-#### Fotos da Montagem
-<!-- Inserir imagens do protótipo montado -->
-
 ---
 
 ## 2 Testes e Ajustes
 
-Descrição dos testes/validações realizadas. Use fotos, diagramas, tabelas, etc.
+### Bucks e LDO
 
-### 2.1 Testes
+Primeiro verificamos se a conversão de energia estava estável. Podemos ver que as tensões estão corretas e estáveis o suficiente pela medida "Avg" na parte inferior das Figuras 19, 20 e 21.
 
-#### Teste de Resistência Mecânica e Temperatura
-<!-- Descrever metodologia, equipamentos, resultados e análise -->
+A Figura 22 mostra o setup de teste com uma fonte de bancada gerando a tensão de entrada de 24V.
 
-#### Definição do Material de Limpeza
-<!-- Justificar escolha do líquido de limpeza e concentração -->
+<table align="center">
+  <tr>
+    <td align="center">
+    <h5>Figura 19: Buck 12V</h5>
+      <img width="400" src="img/buck5v.png" />
+    </td>
+    <td align="center">
+    <h5>Figura 20: Buck 5V</h5>
+      <img width="400" src="img/buck12v.png" />
+    </td>
+    <td align="center">
+    <h5>Figura 21: LDO</h5>
+      <img width="400" src="img/ldo.png" />
+    </td>
+  </tr>
+</table>
 
-#### Teste do Papel Alumínio
-<!-- Descrever metodologia, resultado (uniformidade da cavitação) e imagens -->
+<div align=center>
+<h5>Figura 22: Tensão de entrada</h5>
+<img src="img/test_setup.jpeg" width="600">
+</div> <br>
 
-#### Teste de Limpeza
-<!-- Descrever objetos utilizados, sujidade aplicada, resultado obtido e análise -->
+### PWM
 
-#### Tabela Resumo dos Testes
+O PWM foi configurado conforme na CubeMX da seguinte forma:
+- Center Aligned mode 1
+- Asymmetric PWM mode 1
+- CH1 polarity: HIGH
+- CH2 polarity: LOW
 
-| Teste | Condição | Resultado | Observações |
-| :--- | :--- | :--- | :--- |
-| | | | |
+A representação gráfica da configuração e o resultado estão apresentados respectivamente nas Figuras 23 e 24.
 
----
+<table align="center">
+  <tr>
+    <td align="center">
+    <h5>Figura 23: PWM</h5>
+      <img width="500" src="img/pwm.png" />
+    </td>
+    <td align="center">
+    <h5>Figura 24: Entrada do driver</h5>
+      <img width="600" src="img/driver_in.png" />
+    </td>
+  </tr>
+</table>
 
-### 2.2 Ajustes de Projeto
+### Transformador
 
-#### Ajustes Realizados
-<!-- Listar e descrever cada ajuste aplicado após os testes -->
+Uma tensão de 12V foi colocada no primário para verificar a tensão de saída. Com 24V, o esperado é que a saída estivesse em torno de 316V pico-a-pico.
 
-#### Justificativa Técnica
-<!-- Explicar o motivo de cada ajuste com base nos resultados dos testes -->
+Este valor estava sendo alcançado já com 12V conforme mostra a Figura 25, indicando uma amplificação maior do que a esperada, portanto será necessário reduzir o número de voltas no secundário.
 
-#### Resultado Final
-<!-- Inserir fotos ou medições após os ajustes -->
+<div align=center>
+<h5>Figura 25: Tensão de saida</h5>
+<img src="img/tensao_saida.gif" width="300">
+</div> <br>
 
-#### Lições Aprendidas
-<!-- Registrar dificuldades, soluções e recomendações para projetos futuros -->
+### Teste de Resistência Mecânica e Temperatura
+
+O primeiro teste foi feito com uma média de 16W (16V/1A). O duty cycle estava configurado em 45%, mas os mosfets ultrapassaram 50ºC em aproximadamente 2 minutos, indicando que havia mais corrente reativa do que o esperado no primário.
+
+
+Um mosfet apresenta um aumento de temperatura maior e mais rápido que outro, o que indica um possível desbalanço no núcleo do transformador. A Figura 26 mostra a tensão em ambas as bobinas do primário sobrepostas para verificar a simetria.
+
+<div align=center>
+<h5>Figura 26: Simetria do núcleo</h5>
+<img src="img/simetria.png" width="400">
+</div> <br>
+
+Pra mitigar isso, diminuímos o duty cycle progressivamente até chegar em 25%, onde a temperatura estabilizou bem em 50ºC com operação contínua, entregando 20W (20V/1A).
+
+
+### Teste do Papel Alumínio
+
+Alguns testes foram conduzidos com o papel alumínio para verificar a homogeneidade das ondas ultrassônicas. Se o papel alumínio apresentar uma textura rugosa uniforme, marcada por pequenos pontos, rugas e pequenos furos ou rasgos distribuídos por toda a área submersa então a energia está sendo transferida de forma homogênea. Nos testes conduzidos, o papel não apresentou mudanças muito perceptíveis.
+
+### Teste de Limpeza
+
+Os testes preliminares foram realizados com uma frequência fixa. Neste modo, era perceptível que ondas estacionárias estavam se formando pelo padrão no fundo da bacia e pela presença de minibolhas que permaneciam presas na mesma área, como mostrado respectivamente nas Figuras 27 e 28 (centro da imagem).
+
+<div align=center>
+<h5>Figura 27: Ondas estacionárias</h5>
+<img src="img/onda_estacionaria.png" width="500">
+</div> <br>
+
+<div align=center>
+<h5>Figura 28: Minibolha presa</h5>
+<img src="img/bolha_parada.gif" width="300">
+</div> <br>
+
+Para dispersar essas bolhas estacionárias, foi realizado um sweep de frequência, o que se mostrou eficaz conforme mostrado na Figura 29, onde há uma bolha no centro da imagem que se junta com outra e segue para a superfície.
+
+O código para o teste pode ser acessado em [software](./software/main.c)
+
+<div align=center>
+<h5>Figura 29: Minibolha sendo dispersada</h5>
+<img src="img/bolha_indo_embora.gif" width="300">
+</div> <br>
+
+A Figura 30 mostra bolhas se formando ao redor do objeto solto no recipiente.
+
+<div align=center>
+<h5>Figura 30: Bolhas na superfície do objeto</h5>
+<img src="img/bolhas.gif" width="300">
+</div> <br>
+
+
+No entanto, após aproximadamente 20 minutos com o projeto energizado, os objetos dentro do recipiente não apresentaram diferenças significativas. Como os testes foram realizados apenas com água, é preciso testar novamente com produtos de limpeza diferentes e com um volume menor de líquido.
 
 ---
 
@@ -249,6 +408,9 @@ Descrição dos testes/validações realizadas. Use fotos, diagramas, tabelas, e
 ## Referências (links/datasheets/livros)
 
 
-- [nRF Connect SDK](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.2/nrf/getting_started/modifying.html#configure-application>)
+- [Push Pull Switching Transformer Design](https://cettechnology.com/push-pull-switching-transformer-design/)
+- Projeto de Transformadores para Alta Frequênciapara Alta Frequência (Prof. Joabel Moia)
+- [YUNYISONIC: High-Frequency Ultrasonic Cleaning in the Lab](https://www.yunyisonic.com/high-frequency-ultrasonic-cleaning-in-the-lab-when-and-why-it-matters/?srsltid=AfmBOopkQFBerbvCK0ieflRaHmwUs67991eDK0i3NRQh7iqhvNpcaU_K)
+- [UVTools](https://github.com/sn4k3/UVTools)
 
 
