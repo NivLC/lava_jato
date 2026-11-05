@@ -227,11 +227,11 @@ Para verificação dos cálculos, simula-se um trafo em uma configuração parec
   <tr>
     <td align="center">
     <h5>Figura 14: Esquema elétrico</h5>
-      <img width="500" src="img/trafo_sim_sch.png" />
+      <img width="800" src="img/trafo_sim_sch.png" />
     </td>
     <td align="center">
     <h5>Figura 15: Simulação no tempo</h5>
-      <img width="500" src="img/trafo_sim_grafico.png" />
+      <img width="800" src="img/trafo_sim_grafico.png" />
     </td>
   </tr>
 </table>
@@ -368,6 +368,7 @@ No entanto, após aproximadamente 20 minutos com o projeto energizado, os objeto
 
 - [Push Pull Switching Transformer Design](https://cettechnology.com/push-pull-switching-transformer-design/)
 - Projeto de Transformadores para Alta Frequênciapara Alta Frequência (Prof. Joabel Moia)
+- Sinais Senoidais - Tensão e Corrente Alternadas (Prof. Mussoi)
 - [YUNYISONIC: High-Frequency Ultrasonic Cleaning in the Lab](https://www.yunyisonic.com/high-frequency-ultrasonic-cleaning-in-the-lab-when-and-why-it-matters/?srsltid=AfmBOopkQFBerbvCK0ieflRaHmwUs67991eDK0i3NRQh7iqhvNpcaU_K)
 - [UVTools](https://github.com/sn4k3/UVTools)
 
