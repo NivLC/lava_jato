@@ -138,55 +138,42 @@ As especificações de projeto são mostradas na tabela abaixo:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Potência** | Potência do Piezo (Carga) | $P_{piezo}$ | 35 | W | |
 | | Potência de Trabalho (Projeto) | $P$ | 30 | W | Superdimensionado para folga |
-| **Primário** | Tensão do Primário | $V_{pri}$ | 24 | V | |
-| | Corrente do Primário | $I_{pri}$ | 1,25 | A | |
-| **Secundário** | Tensão do Secundário (RMS) | $V_{sec}$ | 122 | V | |
-| | Corrente do Secundário (RMS) | $I_{sec}$ | 0,24 | A | |
-| **Segurança** | Densidade de Corrente Segura | $J$ | 2 | A/mm² | |
-| | Profundidade Pelicular (Pior caso) | $\delta$ | 0,47 | mm |
+| **Primário** | Tensão do Primário | $V_{PKpri}$ | 24 | V | |
+| | Corrente do Primário | $I_{PKpri}$ | 1,25 | A | |
+| **Secundário** | Tensão do Secundário (RMS) | $V_{sec}$ | 98,5901 | V | |
+| | Corrente do Secundário (RMS) | $I_{sec}$ | 0,3043 | A | |
+| **Segurança** | Densidade de Corrente Segura | $J$ | 3 | A/mm² | |
+| | Profundidade Pelicular | $\delta$ | 0,2372 | mm |
 | **Núcleo** | Tipo de Núcleo | - | ETD | - | Formato E duplo, cilindro central |
-| | Fator de Indutância | $A_L$ | 1,83 | $\mu H/espiras^2$ | Média obtida experimentalmente |
-| | Área da Seção Transversal Efetiva | $A_e$ | 107 | mm² | Calculada com $D = 11$ mm |
-| | Área da Janela do Carretel | $A_w$ | 155 | mm² | Calculada com $27,2 \times 5,7$ mm |
+| | Fator de Indutância | $A_L$ | 1,8296 | $\mu H/espiras^2$ | Obrtido pela ponte LCR |
+| | Área da Seção Transversal Efetiva | $A_e$ | 107 | mm² | Datasheet |
+| | Área da Janela do Carretel | $A_w$ | 154,768 | mm² | Datasheet |
 
 > Obs.: Para mais detalhes sobre como as especificações foram obtidas, clique [aqui](/etapa_3/especificacao_fundamentacao.md). As especificações do núcleo foram obtidas empíricamente, conforme descrito no arquivo.
  
 
 #### 1.4.2 Dimensionamento da Bitola dos Cabos
 
-Levando em consideração as especificações da tabela anterior, obteve-se os parâmetros de bitola para o primário e secundário, conforme a tabela abaixo.
+Levando em consideração as especificações da tabela anterior, obteve-se os parâmetros de bitola para o primário e secundário, conforme a **Figura 12** abaixo.
 
-| Parâmetro | Símbolo | Valor | Unidade | Observação / Equivalência |
-| :--- | :--- | :--- | :--- | :--- |
-| **Primário** | | | | |
-| Diâmetro teórico máximo | $D_{pri}$ | 0,47 | mm |  |
-| Diâmetro elementar | $D_{pri\,elem}$ | 0,5150 | mm | Calculado para $N=3$ |
-| **Bitola comercial adotada** | - | **0,57** | **mm** | **Fio 23 AWG** |
-| **Secundário** | | | | |
-| Diâmetro teórico mínimo | $D_{sec}$ | 0,8849 | mm | Calculado para $I = 1,230$ A |
-| Diâmetro elementar | $D_{sec\,elem}$ | 0,5109 | mm | Calculado para $N=3$ |
-| **Bitola comercial adotada** | - | **0,51** | **mm** | **Fio 24 AWG** |
+<div align=center>
+<h5>Figura 12: Dimensionamento de bitola e número de cabos</h5>
+<img src="img/trafo_dim_bitola.png" width="500">
+</div> <br>
 
 > Obs.: Para mais detalhes sobre como os parâmetros foram obtidos, clique [aqui](/etapa_3/especificacao_fundamentacao.md).
 
 #### 1.4.4 Dimensionamento do número de Espiras
 
-**Primário**: o número de espiras do primário é obtido pela lei de Faraday para uma onda quadrada:
+**Primário**:  
+O número de espiras do primário é obtido pela lei de Faraday para uma onda quadrada:
 
 $$
 N_P = \frac{V_Pt_{on}}{4B_{max}A_e}
 $$
 
-Onde:
-- $V_P$: tensão de pico aplicada em **metade** do primário;
-- $t_{on}=TD$: tempo efetivo de condução, onde T é o período de onda, e D o duty cycle;
-- $B$: densidade de fluxo magnético de projeto (com margem de segurança em relação ao $B_{max}$ do material)
-- $A_e$: área da seção transversal efetiva do núcleo
 
-.: A saturação do núcleo depende do produto tensão-tempo aplicado ao enrolamento (volt-segundo). O pior caso ocorre quando a tensão de entrada é máxima e o tempo de condução é máximo (50% do período).
-
-**Secundário:** 
-
+**Secundário:**  
 Pela relação de transformação do conversor push-pull:
 
 $$
@@ -197,7 +184,13 @@ $$
 N_S = \frac{1}{2} \left( \frac{V_S}{V_P} \right) \left( \frac{N_P}{D} \right)
 $$
 
-O valor final deve ser **arredondado para cima**.
+Constrói-se uma tabela, analisa-se os valores e se escolhe um número de espiras para o primário e secundário. Observando a tabela da **Figura 13**, optou-se por fabricar o trafo para $N_{pri}=7$ e $N_{sec}=29$.
+
+<div align=center>
+<h5>Figura 13: Dimensionamento de espiras no primário e secundário</h5>
+<img src="img/trafo_dim_tabela.png" width="700">
+</div> <br>
+
 
 #### 1.4.5 Verificação da Área de Cobre
 
@@ -224,6 +217,25 @@ $$
 - $\ll 40\%$: núcleo superdimensionado $\rightarrow$ escolher núcleo menor
 
 Os $60$–$65\%$ restantes são destinados a isolamento do esmalte, fator de empacotamento, fita isolante, tubos termorretráteis e espaços vazios.
+
+#### 1.4.6 Simulação
+
+Para verificação dos cálculos, simula-se um trafo em uma configuração parecida com a de aplicação. Utilizando o LTspice, obteve-se a simulação descrita na **Figura 14** e **Figura 15**.
+
+<table align="center">
+  <tr>
+    <td align="center">
+    <h5>Figura 14: Esquema elétrico</h5>
+      <img width="500" src="img/trafo_sim_sch.png" />
+    </td>
+    <td align="center">
+    <h5>Figura 15: Simulação no tempo</h5>
+      <img width="500" src="img/trafo_sim_grafico.png" />
+    </td>
+  </tr>
+</table>
+
+
 
 ---
 

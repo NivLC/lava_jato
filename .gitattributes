@@ -1,1 +1,12 @@
+# Força o Git a manter as quebras de linha CRLF para os arquivos do LTspice
+*.asc binary
+*.asy binary
+*.cir binary
+*.net binary
+*.lib binary
+*.inc binary
+*.MOD binary
+*.mod binary
+
+# Trata os arquivos do SMath Studio como binários para não corromper
 *.sm binary

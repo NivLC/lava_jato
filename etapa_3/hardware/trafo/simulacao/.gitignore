@@ -1,0 +1,16 @@
+# Arquivos de saída de simulação (gerados automaticamente)
+*.raw
+*.fft
+*.log
+*.op.raw
+
+# Netlists geradas pelo LTspice
+*.net
+
+# Arquivos de configuração de plotagem (geralmente específicos da máquina)
+*.plt
+
+# Arquivos temporários e de backup
+*.bak
+*.tmp
+*~
