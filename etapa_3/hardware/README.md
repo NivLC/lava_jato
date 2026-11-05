@@ -174,5 +174,5 @@ Isto é particularmente útil no caso de um push-pull onde é comum problemas de
 
 ## Referências (links/datasheets/livros)
 
-[Push-Pull Transformer Design: How to Choose the Turns Ratio, Avoid Core Saturation and Keep the Flux Balanced](https://www.voohuele.com/news/push-pull-transformer-design-guide/)
-[RF Man Discusses Core Saturation Of Inductors and Ferrite Materials](https://www.youtube.com/watch?v=5iOkFIJcj2s&t=1s)
+- [Push-Pull Transformer Design: How to Choose the Turns Ratio, Avoid Core Saturation and Keep the Flux Balanced](https://www.voohuele.com/news/push-pull-transformer-design-guide/)
+- [RF Man Discusses Core Saturation Of Inductors and Ferrite Materials](https://www.youtube.com/watch?v=5iOkFIJcj2s&t=1s)
